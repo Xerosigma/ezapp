@@ -1,8 +1,8 @@
 package com.nestorledon.ezapp.base;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,8 +22,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * A com.nestorledon.ezapp.base activity class for handling basic scaffolding
- * of toolbars, menus, transaction, and more.
+ * An activity class for handling basic scaffolding
+ * of toolbars, navigation drawers, transactions, and more.
  *
  * This class also handles fragment navigation without the need
  * for modification. @see Navigator
@@ -34,29 +34,28 @@ import java.util.List;
  */
 public abstract class ActivityBase extends ActionBarActivity {
 
-    private Toolbar mToolbar;
-    private AdjustedDrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
-    private ActionBarDrawerToggle mDrawerToggle;
-    private FragmentManager fragmentManager = getFragmentManager();
-    private ViewPager mViewPager;
-    private SlidingTabLayout mSlidingTabLayout;
-    private boolean hideOptionsMenu = false;
-    private boolean poppingBackStack = false;
+    protected Toolbar mToolbar;
+    protected AdjustedDrawerLayout mDrawerLayout;
+    protected ListView mDrawerList;
+    protected ActionBarDrawerToggle mDrawerToggle;
+    protected FragmentManager fragmentManager = getSupportFragmentManager();
+    protected ViewPager mViewPager;
+    protected SlidingTabLayout mSlidingTabLayout;
+    protected boolean hideOptionsMenu = false;
+    protected boolean poppingBackStack = false;
 
-    protected final boolean HIDE_OPTIONS = true;
     protected final int CONTENT_FRAME = R.id.content_frame;
 
     /** Object responsible for navigation, cyclic reference to child activity. */
-    protected Navigator navigator;
-    protected FragmentBase currentFragment;
+    protected Navigator mNavigator;
+    protected FragmentBase mCurrentFragment;
 
 
     protected void configureActivity(Navigator navigator) {
-        this.navigator = navigator;
+        this.mNavigator = navigator;
     }
     protected void configureActivity(Navigator navigator, boolean hideOptionsMenu) {
-        this.navigator = navigator;
+        this.mNavigator = navigator;
         this.hideOptionsMenu = hideOptionsMenu;
     }
 
@@ -81,17 +80,17 @@ public abstract class ActivityBase extends ActionBarActivity {
         mDrawerLayout = (AdjustedDrawerLayout) findViewById(R.id.drawer_frame);
         mDrawerList = (ListView) findViewById(R.id.navdrawer_items_list);
 
-        final ArrayList<String> sectionsAL = new ArrayList<String>( Arrays.asList(navigator.getSections()) );
+        final ArrayList<String> sectionsAL = new ArrayList<String>( Arrays.asList(mNavigator.getSections()) );
 
         // Set the adapter for the list view
-        mDrawerList.setAdapter( new NavigatorAdapterBase( this, navigator, sectionsAL ));
+        mDrawerList.setAdapter( new NavigatorAdapterBase( this, mNavigator, sectionsAL ));
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 mDrawerLayout.closeDrawers();
                 final String section = sectionsAL.get(position);
-                navigator.navigate(section, view);
+                mNavigator.navigate(section, view);
             }
         });
 
@@ -115,7 +114,7 @@ public abstract class ActivityBase extends ActionBarActivity {
 
                 float xPositionOpenDrawer = mDrawerList.getWidth();
                 float xPositionWindowContent = ( ( slideOffset * xPositionOpenDrawer ) / 2 );
-                //currentFragment.setX(xPositionWindowContent);
+                //mCurrentFragment.setX(xPositionWindowContent);
             }
         };
 
@@ -186,7 +185,7 @@ public abstract class ActivityBase extends ActionBarActivity {
                 } else {
                     fragmentTransaction.commit();
                 }
-                currentFragment = fragment;
+                mCurrentFragment = fragment;
             }
         });
     }
@@ -198,7 +197,7 @@ public abstract class ActivityBase extends ActionBarActivity {
      */
     @SuppressWarnings("UnusedDeclaration")
     public void onUIClick(View view) {
-        currentFragment.onUIAction(view);
+        mCurrentFragment.onUIAction(view);
     }
 
     /**

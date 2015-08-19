@@ -1,8 +1,8 @@
 package com.nestorledon.ezapp.base;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
     public PagerAdapter(FragmentManager fm) {
         super(fm);
-        mFragments = new ArrayList<Fragment>();
+        mFragments = new ArrayList<>();
     }
 
     @Override
