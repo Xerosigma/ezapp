@@ -26,7 +26,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
 
-class SlidingTabStrip extends LinearLayout {
+public class SlidingTabStrip extends LinearLayout implements SlidingTabStripPositionAware {
 
     private static final int DEFAULT_BOTTOM_BORDER_THICKNESS_DIPS = 0;
     private static final byte DEFAULT_BOTTOM_BORDER_COLOR_ALPHA = 0x26;
@@ -43,6 +43,7 @@ class SlidingTabStrip extends LinearLayout {
 
     private int mSelectedPosition;
     private float mSelectionOffset;
+    private int mIndicatorDisplayMode = 1;
 
     private SlidingTabLayout.TabColorizer mCustomTabColorizer;
     private final SimpleTabColorizer mDefaultTabColorizer;
@@ -124,8 +125,21 @@ class SlidingTabStrip extends LinearLayout {
 
             mSelectedIndicatorPaint.setColor(color);
 
-            canvas.drawRect(left, height - mSelectedIndicatorThickness, right,
-                    height, mSelectedIndicatorPaint);
+            if(TAP_POSITION_TOP == mIndicatorDisplayMode) {
+                canvas.drawRect(left, 0, right, mSelectedIndicatorThickness, mSelectedIndicatorPaint);
+            }
+
+            else if (TAP_POSITION_BOTTOM == mIndicatorDisplayMode) {
+                canvas.drawRect(left, height - mSelectedIndicatorThickness, right,
+                        height, mSelectedIndicatorPaint);
+            }
+
+            else { // BOTH
+                canvas.drawRect(left, height - mSelectedIndicatorThickness, right,
+                        height, mSelectedIndicatorPaint);
+
+                canvas.drawRect(left, 0, right, mSelectedIndicatorThickness, mSelectedIndicatorPaint);
+            }
         }
 
         // Thin underline along the entire bottom edge
@@ -151,6 +165,10 @@ class SlidingTabStrip extends LinearLayout {
         float g = (Color.green(color1) * ratio) + (Color.green(color2) * inverseRation);
         float b = (Color.blue(color1) * ratio) + (Color.blue(color2) * inverseRation);
         return Color.rgb((int) r, (int) g, (int) b);
+    }
+
+    public void setIndicatorDisplayMode(int pos) {
+        mIndicatorDisplayMode = pos;
     }
 
     private static class SimpleTabColorizer implements SlidingTabLayout.TabColorizer {
