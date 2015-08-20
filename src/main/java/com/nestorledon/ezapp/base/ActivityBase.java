@@ -19,6 +19,7 @@ import com.nestorledon.ezapp.base.widgets.SlidingTabLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -74,16 +75,19 @@ public abstract class ActivityBase extends ActionBarActivity {
     }
 
     protected void setNavDrawer() {
-        setNavDrawer(R.string.app_name);
+        HashMap<String, Integer> colorMap = new HashMap<>();
+        colorMap.put(NavigatorAdapterBase.COLOR_TEXT_ACTIVE, R.color.ez_navigation_active_item);
+        colorMap.put(NavigatorAdapterBase.COLOR_TEXT_INACTIVE, R.color.ez_nav_drawer_text);
+        setNavDrawer(colorMap);
     }
-    protected void setNavDrawer(Integer titleId) {
+    protected void setNavDrawer(HashMap<String, Integer> colors) {
         mDrawerLayout = (AdjustedDrawerLayout) findViewById(R.id.drawer_frame);
         mDrawerList = (ListView) findViewById(R.id.navdrawer_items_list);
 
-        final ArrayList<String> sectionsAL = new ArrayList<String>( Arrays.asList(mNavigator.getSections()) );
+        final ArrayList<String> sectionsAL = new ArrayList<>( Arrays.asList(mNavigator.getSections()) );
 
         // Set the adapter for the list view
-        mDrawerList.setAdapter( new NavigatorAdapterBase( this, mNavigator, sectionsAL ));
+        mDrawerList.setAdapter( new NavigatorAdapterBase( this, mNavigator, sectionsAL, colors ));
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -94,7 +98,7 @@ public abstract class ActivityBase extends ActionBarActivity {
             }
         });
 
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, titleId, titleId ) {
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open, R.string.drawer_close ) {
 
             /** Called when a drawer has settled in a completely closed state. */
             public void onDrawerClosed(View view) {

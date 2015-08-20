@@ -10,7 +10,10 @@ import android.widget.TextView;
 
 import com.nestorledon.ezapp.R;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 
 /**
  * This adapter provides views for navigation
@@ -23,25 +26,30 @@ import java.util.List;
  */
 public class NavigatorAdapterBase extends BaseAdapter {
 
-    private Context context;
-    private Navigator navigator;
-    private List<String> sections;
+    public final static String COLOR_TEXT_ACTIVE = "COLOR_TEXT_ACTIVE";
+    public final static String COLOR_TEXT_INACTIVE = "COLOR_TEXT_INACTIVE";
+
+    private Context mContext;
+    private Navigator mNavigator;
+    private List<String> mSections;
+    private Map<String, Integer> mColors;
 
 
-    public NavigatorAdapterBase(final Context context, final Navigator navigator, final List<String> sections){
-        this.context = context;
-        this.navigator = navigator;
-        this.sections = sections;
+    public NavigatorAdapterBase(final Context context, final Navigator navigator, final List<String> sections, Map<String, Integer> colors){
+        mContext = context;
+        mNavigator = navigator;
+        mSections = sections;
+        mColors = colors;
     }
 
     @Override
     public int getCount() {
-        return sections.size();
+        return mSections.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return sections.get( position );
+        return mSections.get( position );
     }
 
     @Override
@@ -58,7 +66,7 @@ public class NavigatorAdapterBase extends BaseAdapter {
 
         if ( convertView == null || convertView.getTag() instanceof String ) {
 
-            convertView = LayoutInflater.from(context).inflate( R.layout.ez_drawer_item, null );
+            convertView = LayoutInflater.from(mContext).inflate( R.layout.ez_drawer_item, null );
             holder = new ViewHolder();
 
             holder.icon = (ImageView) convertView.findViewById( R.id.nav_drawer_item_icon_left );
@@ -74,33 +82,51 @@ public class NavigatorAdapterBase extends BaseAdapter {
         }
 
 
-        final String section = sections.get( position );
+        final String section = mSections.get( position );
 
         holder.text.setText(section);
 
-        for(int ii = 0; ii < navigator.getSectionRules().length; ii++) {
-            if(section.equalsIgnoreCase(navigator.getSectionRules()[ii])) {
+        for(int ii = 0; ii < mNavigator.getSectionRules().length; ii++) {
+            if(section.equalsIgnoreCase(mNavigator.getSectionRules()[ii])) {
 
                 holder.divider.setVisibility(View.VISIBLE);
             }
         }
 
-        final int leftDrawable = navigator.getIconResourceId(section, false);
-        holder.icon.setImageDrawable(context.getResources().getDrawable(leftDrawable));
+        final int leftDrawable = mNavigator.getIconResourceId(section, false);
+        if(leftDrawable != 0) {
+            holder.icon.setImageDrawable(mContext.getResources().getDrawable(leftDrawable));
+        }
 
-        final Navigator navigator = (Navigator) context;
+        final Navigator navigator = (Navigator) mContext;
         final ImageView icon = (ImageView) convertView.findViewById( R.id.nav_drawer_item_icon_left );
         final TextView text = (TextView) convertView.findViewById(R.id.nav_drawer_text);
         if (section.equals(navigator.getSelectedItem())) {
-            text.setTextColor(context.getResources().getColor(R.color.navigation_active_item));
-            icon.setImageDrawable(context.getResources().getDrawable(navigator.getIconResourceId(section, true)));
+            text.setTextColor(mContext.getResources().getColor(resolveColor(COLOR_TEXT_ACTIVE)));
+            int rid = navigator.getIconResourceId(section, true);
+            if(rid != 0) {
+                icon.setImageDrawable(mContext.getResources().getDrawable(rid));
+            }
         } else {
-            text.setTextColor(context.getResources().getColor(R.color.nav_drawer_text));
-            icon.setImageDrawable(context.getResources().getDrawable(navigator.getIconResourceId(section, false)));
+            text.setTextColor(mContext.getResources().getColor(resolveColor(COLOR_TEXT_INACTIVE)));
+            int rid = navigator.getIconResourceId(section, false);
+            if(rid != 0) {
+                icon.setImageDrawable(mContext.getResources().getDrawable(rid));
+            }
 
         }
 
         return convertView;
+    }
+
+    private int resolveColor(String colorName) {
+        Integer result = 0;
+        for(Map.Entry ent : mColors.entrySet()) {
+            if (ent.getKey().equals(colorName)) {
+                result =  (Integer) ent.getValue();
+            }
+        }
+        return result;
     }
 
     public class ViewHolder {
