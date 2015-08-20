@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#3F51B5</color>           <!-- Blue 500 -->
-    <color name="primary_light">#5C6BC0</color>     <!-- Blue 400 -->
-    <color name="primary_dark">#3949AB</color>      <!-- Blue 600 -->
+    <color name="ez_primary">#3F51B5</color>           <!-- Blue 500 -->
+    <color name="ez_primary_light">#5C6BC0</color>     <!-- Blue 400 -->
+    <color name="ez_primary_dark">#3949AB</color>      <!-- Blue 600 -->
 
-    <color name="accent">#F06292</color>           <!-- Pink 300 -->
-    <color name="accent_light">#F48FB1</color>     <!-- Pink 200 -->
-    <color name="accent_dark">#F8BBD0</color>      <!-- Pink 100 -->
+    <color name="ez_accent">#F06292</color>           <!-- Pink 300 -->
+    <color name="ez_accent_light">#F48FB1</color>     <!-- Pink 200 -->
+    <color name="ez_accent_dark">#F8BBD0</color>      <!-- Pink 100 -->
 
-    <color name="error">#B71C1C</color>      <!-- Red 900 -->
+    <color name="ez_error">#B71C1C</color>      <!-- Red 900 -->
 
-    <color name="horizontal_rule">#44808080</color>
-    <color name="navigation_active_item">#aaaaaa</color>
-    <color name="ripple">#66ffffff</color>
+    <color name="ez_horizontal_rule">#44808080</color>
+    <color name="ez_navigation_active_item">#aaaaaa</color>
+    <color name="ez_ripple">#66ffffff</color>
 
-    <color name="background">#ffffff</color>
-    <color name="text_secondary">#808080</color>
-    <color name="text_hint">#c3c3c3</color>
-    <color name="text_light">#ffffffff</color>
-    <color name="text_dark">#ff444444</color>
+    <color name="ez_background">#ffffff</color>
+    <color name="ez_text_secondary">#808080</color>
+    <color name="ez_text_hint">#c3c3c3</color>
+    <color name="ez_text_light">#ffffffff</color>
+    <color name="ez_text_dark">#ff444444</color>
 
-    <color name="divider">#eeeeee</color>
+    <color name="ez_divider">#eeeeee</color>
 
-    <color name="nav_drawer_background">#ffffff</color>
-    <color name="nav_drawer_text">#de000000</color>
-    <color name="nav_drawer_subheader_text">#8a000000</color>
+    <color name="ez_nav_drawer_background">#ffffff</color>
+    <color name="ez_nav_drawer_text">#de000000</color>
+    <color name="ez_nav_drawer_subheader_text">#8a000000</color>
 
-    <color name="tint">#7f101010</color>
+    <color name="ez_tint">#7f101010</color>
 
-    <color name="clear">#00000000</color>
+    <color name="ez_clear">#00000000</color>
 </resources>

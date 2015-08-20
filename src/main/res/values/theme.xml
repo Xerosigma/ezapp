@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
+        <item name="colorPrimary">@color/ez_primary</item>
+        <item name="colorPrimaryDark">@color/ez_primary_dark</item>
+        <item name="colorAccent">@color/ez_accent</item>
 
         <item name="android:alertDialogTheme">@style/BaseTheme.Dialog</item>
     </style>
 
     <style name="BaseTheme.Dialog" parent="Theme.AppCompat.Dialog">
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryDark">@color/primary_dark</item>
-        <item name="colorAccent">@color/accent</item>
+        <item name="colorPrimary">@color/ez_primary</item>
+        <item name="colorPrimaryDark">@color/ez_primary_dark</item>
+        <item name="colorAccent">@color/ez_accent</item>
     </style>
 
     <style name="AppTheme" parent="BaseTheme" />
@@ -26,7 +26,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">@dimen/margin</item>
         <item name="android:background">?android:attr/selectableItemBackground</item>
-        <item name="android:textColor">@color/nav_drawer_text</item>
+        <item name="android:textColor">@color/ez_nav_drawer_text</item>
         <item name="android:drawablePadding">@dimen/nav_drawer_item_drawable_padding</item>
     </style>
 
@@ -36,14 +36,14 @@
         <item name="android:paddingLeft">@dimen/margin</item>
         <item name="android:paddingRight">@dimen/margin</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:textColor">@color/nav_drawer_subheader_text</item>
+        <item name="android:textColor">@color/ez_nav_drawer_subheader_text</item>
     </style>
     <style name="NavDrawerSubheader" parent="BaseNavDrawerSubheader" />
 
     <style name="Divider">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/divider_height</item>
-        <item name="android:background">@color/divider</item>
+        <item name="android:background">@color/ez_divider</item>
     </style>
 
     <style name="BaseTheme.Toolbar" parent="Widget.AppCompat.ActionBar">
@@ -52,6 +52,6 @@
     </style>
 
     <style name="ThemeOverlay.MyApp.ActionBar" parent="ThemeOverlay.AppCompat.ActionBar">
-        <item name="android:textColorPrimary">@color/background</item>
+        <item name="android:textColorPrimary">@color/ez_background</item>
     </style>
 </resources>

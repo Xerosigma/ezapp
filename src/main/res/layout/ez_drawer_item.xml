@@ -50,7 +50,7 @@
         android:id="@+id/ez_drawer_item_divider"
         android:layout_height="1dp"
         android:layout_width="match_parent"
-        android:background="@color/horizontal_rule"
+        android:background="@color/ez_horizontal_rule"
         android:visibility="gone"/>
 
 </LinearLayout>
