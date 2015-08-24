@@ -18,11 +18,16 @@ package com.nestorledon.ezapp.base.widgets;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.InputType;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.SparseArray;
 import android.util.TypedValue;
 import android.view.Display;
@@ -31,10 +36,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nestorledon.ezapp.R;
@@ -83,6 +87,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
     private int mTabViewLayoutId;
     private int mTabViewTextViewId;
+    private int mTabViewImageViewId;
     private boolean mDistributeEvenly;
 
     private ViewPager mViewPager;
@@ -165,6 +170,19 @@ public class SlidingTabLayout extends HorizontalScrollView {
     }
 
     /**
+     * Set the custom layout to be inflated for the tab views.
+     *
+     * @param layoutResId Layout id to be inflated
+     * @param textViewId id of the {@link TextView} in the inflated view
+     * @param textViewId id of the {@link android.widget.ImageView} in the inflated view
+     */
+    public void setCustomTabView(int layoutResId, int textViewId, int imageViewId) {
+        mTabViewLayoutId = layoutResId;
+        mTabViewTextViewId = textViewId;
+        mTabViewImageViewId = imageViewId;
+    }
+
+    /**
      * Sets the associated view pager. Note that the assumption here is that the pager content
      * (number of tabs and tab titles) does not change after this call has been made.
      */
@@ -212,18 +230,32 @@ public class SlidingTabLayout extends HorizontalScrollView {
     }
 
     private void populateTabStrip() {
-        final PagerAdapter adapter = mViewPager.getAdapter();
+
+        PagerAdapter adapter;
+        if(mViewPager.getAdapter() instanceof FragmentPagerAdapter) {
+            adapter = (FragmentPagerAdapter) mViewPager.getAdapter();
+        }
+
+        else {
+            // TODO: Exception?
+            adapter = (FragmentPagerAdapter) mViewPager.getAdapter();
+        }
+
+
         final View.OnClickListener tabClickListener = new TabClickListener();
 
         for (int i = 0; i < adapter.getCount(); i++) {
             View tabView = null;
+
             TextView tabTitleView = null;
+            ImageView tabIconView = null;
 
             if (mTabViewLayoutId != 0) {
                 // If there is a custom tab view layout id set, try and inflate it
                 tabView = LayoutInflater.from(getContext()).inflate(mTabViewLayoutId, mTabStrip,
                         false);
                 tabTitleView = (TextView) tabView.findViewById(mTabViewTextViewId);
+                tabIconView = (ImageView) tabView.findViewById(mTabViewImageViewId);
             }
 
             if (tabView == null) {
@@ -248,14 +280,52 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
             mTabStrip.addView(tabView);
 
-            tabTitleView.setText(adapter.getPageTitle(i));
+            Fragment fragment = ((FragmentPagerAdapter) mViewPager.getAdapter()).getItem(i);
+            if(fragment instanceof EZNavigable) {
+                EZNavigable navFrag = (EZNavigable) fragment;
+                setTitleIfPresent(tabTitleView, navFrag.getPageTitle());
+                if(null != tabIconView) {
+                    Drawable iconId = getContext()
+                            .getResources()
+                            .getDrawable(navFrag.getPageIconId());
+                    tabIconView.setImageDrawable(iconId);
+                }
+            }
+
+            else {
+                setTitleIfPresent(tabTitleView, adapter.getPageTitle(i));
+            }
+
+
+            final int activeColor = mTabStrip.getTabColorizer().getIndicatorColor(i);
+            final int inActiveColor = mTabStrip.getTabColorizer().getInactiveColor(i);
 
             if (i == mViewPager.getCurrentItem()) {
-                tabTitleView.setTextColor(mTabStrip.getTabColorizer().getIndicatorColor(i));
+                setTitleColorPresent(tabTitleView, activeColor);
+                if(null != tabIconView) {
+                    tabIconView.setColorFilter(activeColor, PorterDuff.Mode.MULTIPLY);
+                }
                 tabView.setSelected(true);
-            } else {
-                tabTitleView.setTextColor(mTabStrip.getTabColorizer().getInactiveColor(i));
             }
+
+            else {
+                setTitleColorPresent(tabTitleView, inActiveColor);
+                if(null != tabIconView) {
+                    tabIconView.setColorFilter(inActiveColor, PorterDuff.Mode.MULTIPLY);
+                }
+            }
+        }
+    }
+
+    private void setTitleIfPresent(final TextView titleView, final CharSequence title) {
+        if(null != titleView) {
+            titleView.setText(title);
+        }
+    }
+
+    private void setTitleColorPresent(final TextView titleView, final int color) {
+        if(null != titleView) {
+            titleView.setTextColor(color);
         }
     }
 
@@ -289,10 +359,39 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
             scrollTo(targetScrollX, 0);
 
+
+            final int activeColor = mTabStrip.getTabColorizer().getIndicatorColor(positionOffset);
+            final int inActiveColor = mTabStrip.getTabColorizer().getInactiveColor(positionOffset);
+
             if(null != mLastSelectedView) { // TODO: positionOffset-1 ???
-                ((TextView) mLastSelectedView).setTextColor(mTabStrip.getTabColorizer().getInactiveColor(positionOffset));
+
+                TextView lastTv = null;
+                ImageView lastIv = null;
+                if(mLastSelectedView instanceof TextView) {
+                    lastTv = (TextView) mLastSelectedView;
+                }
+                else {
+                    lastTv = (TextView) mLastSelectedView.findViewById(mTabViewTextViewId);
+                    lastIv = (ImageView) mLastSelectedView.findViewById(mTabViewImageViewId);
+                }
+
+                lastTv.setTextColor(inActiveColor);
+                if(null != lastIv) { lastIv.setColorFilter(inActiveColor, PorterDuff.Mode.MULTIPLY); }
             }
-            ((TextView) selectedChild).setTextColor(mTabStrip.getTabColorizer().getIndicatorColor(positionOffset));
+
+            TextView tv = null;
+            ImageView iv = null;
+            if(selectedChild instanceof TextView) {
+                tv = (TextView) selectedChild;
+            }
+            else {
+                tv = (TextView) selectedChild.findViewById(mTabViewTextViewId);
+                iv = (ImageView) selectedChild.findViewById(mTabViewImageViewId);
+            }
+
+            tv.setTextColor(activeColor);
+            if(null != iv) { iv.setColorFilter(activeColor, PorterDuff.Mode.MULTIPLY); }
+
             mLastSelectedView = selectedChild;
         }
     }
@@ -357,5 +456,4 @@ public class SlidingTabLayout extends HorizontalScrollView {
             }
         }
     }
-
 }

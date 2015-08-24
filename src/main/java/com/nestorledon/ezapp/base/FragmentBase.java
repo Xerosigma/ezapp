@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
+import com.nestorledon.ezapp.base.widgets.EZNavigable;
+
+
 /**
  * A fragment class for handling basic scaffolding
  * and UI interactions.
@@ -14,17 +17,13 @@ import android.view.View;
  * TODO: Consider making members PRIVATE and require setting via constructor.
  * Created by nestorledon on 2/21/15.
  */
-public abstract class FragmentBase extends Fragment {
+public abstract class FragmentBase extends Fragment implements EZNavigable {
 
     protected InputHandler inputHandler;
     protected String title;
 
     public FragmentBase() {
         // Required empty public constructor
-    }
-
-    public String getTitle() {
-        return title;
     }
 
     public void onUIAction(View v) {

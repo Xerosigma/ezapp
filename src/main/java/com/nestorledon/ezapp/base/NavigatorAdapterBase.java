@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.nestorledon.ezapp.R;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -60,9 +59,7 @@ public class NavigatorAdapterBase extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-
-        ViewHolder holder;
-
+        final ViewHolder holder;
 
         if ( convertView == null || convertView.getTag() instanceof String ) {
 
@@ -74,13 +71,11 @@ public class NavigatorAdapterBase extends BaseAdapter {
             holder.divider = convertView.findViewById(R.id.ez_drawer_item_divider);
 
             convertView.setTag( holder );
-
         }
 
         else {
             holder = (ViewHolder) convertView.getTag();
         }
-
 
         final String section = mSections.get( position );
 
@@ -101,13 +96,16 @@ public class NavigatorAdapterBase extends BaseAdapter {
         final Navigator navigator = (Navigator) mContext;
         final ImageView icon = (ImageView) convertView.findViewById( R.id.nav_drawer_item_icon_left );
         final TextView text = (TextView) convertView.findViewById(R.id.nav_drawer_text);
+
         if (section.equals(navigator.getSelectedItem())) {
             text.setTextColor(mContext.getResources().getColor(resolveColor(COLOR_TEXT_ACTIVE)));
             int rid = navigator.getIconResourceId(section, true);
             if(rid != 0) {
                 icon.setImageDrawable(mContext.getResources().getDrawable(rid));
             }
-        } else {
+        }
+
+        else {
             text.setTextColor(mContext.getResources().getColor(resolveColor(COLOR_TEXT_INACTIVE)));
             int rid = navigator.getIconResourceId(section, false);
             if(rid != 0) {

@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.nestorledon.ezapp.base.widgets.EZNavigable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +14,7 @@ import java.util.List;
  */
 public class PagerAdapter extends FragmentPagerAdapter {
 
-    List<Fragment> mFragments = null;
+    private List<Fragment> mFragments = null;
 
     public PagerAdapter(FragmentManager fm) {
         super(fm);
@@ -32,10 +34,5 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public void addFragment(Fragment fragment) {
         mFragments.add(fragment);
         notifyDataSetChanged();
-    }
-
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return ((FragmentBase)mFragments.get(position)).getTitle();
     }
 }

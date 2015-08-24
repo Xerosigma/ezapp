@@ -14,6 +14,8 @@ import java.util.List;
  */
 public class AdjustedViewPager extends ViewPager {
 
+    private List<Integer> mList = new ArrayList<>();
+
     public AdjustedViewPager(Context context) {
         super(context);
     }
@@ -32,18 +34,19 @@ public class AdjustedViewPager extends ViewPager {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
+        mList.clear();
+
         int height = 0;
 
-        List<Integer> list = new ArrayList<Integer>();
         for (int ii = 0; ii < getChildCount(); ii++) {
             View child = getChildAt(ii);
             child.measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
-            list.add(child.getMeasuredHeight());
+            mList.add(child.getMeasuredHeight());
         }
 
-        if(!list.isEmpty()) {
-            Collections.sort(list);
-            height = list.get(0);
+        if(!mList.isEmpty()) {
+            Collections.sort(mList);
+            height = mList.get(0);
         }
 
         heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
