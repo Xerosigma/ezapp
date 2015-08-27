@@ -44,6 +44,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">vertical</item>
         <item name="android:background">?attr/colorAccent</item>
+        <item name="android:listSelector">@drawable/ez_drawer_selector</item>
     </style>
 
     <style name="EZSpinnerItem">
@@ -127,6 +128,44 @@
     <style name="EZSpinner">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/ez_default_text</item>
+        <item name="android:textSize">@dimen/textSizeDefault</item>
+    </style>
+
+    <style name="Text.Accented">
+        <item name="android:textColor">@color/ez_primary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.Header3">
+        <item name="android:textColor">@color/ez_primary_dark</item>
+        <item name="android:textSize">@dimen/textSizeLarge</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.Header4">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.Drawer">
+        <item name="android:textColor">@color/ez_text_drawer_active</item>
+        <item name="android:textSize">@dimen/textSizeMedium</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Separator">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/ez_divider</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
     </style>
 
 </resources>

@@ -27,7 +27,6 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.InputType;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.SparseArray;
 import android.util.TypedValue;
 import android.view.Display;
@@ -208,7 +207,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
         textView.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        textView.setTextColor(getResources().getColor(R.color.ez_accent)); // FIXME: MAKE CONFIGURABLE!!!
+        textView.setTextColor(getResources().getColor(R.color.ez_accent));
 
         TypedValue outValue = new TypedValue();
         getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground,
@@ -281,13 +280,13 @@ public class SlidingTabLayout extends HorizontalScrollView {
             mTabStrip.addView(tabView);
 
             Fragment fragment = ((FragmentPagerAdapter) mViewPager.getAdapter()).getItem(i);
-            if(fragment instanceof EZNavigable) {
-                EZNavigable navFrag = (EZNavigable) fragment;
-                setTitleIfPresent(tabTitleView, navFrag.getPageTitle());
+            if(fragment instanceof NavigableView) {
+                NavigableView navFrag = (NavigableView) fragment;
+                setTitleIfPresent(tabTitleView, navFrag.getTitle());
                 if(null != tabIconView) {
                     Drawable iconId = getContext()
                             .getResources()
-                            .getDrawable(navFrag.getPageIconId());
+                            .getDrawable(navFrag.getIconId());
                     tabIconView.setImageDrawable(iconId);
                 }
             }

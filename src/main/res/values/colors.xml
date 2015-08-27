@@ -29,4 +29,10 @@
     <color name="ez_tint">#7f101010</color>
 
     <color name="ez_clear">#00000000</color>
+
+
+    <color name="ez_default_text">#323232</color>
+
+    <color name="ez_text_drawer_active">@color/ez_primary</color>
+    <color name="ez_text_drawer_inactive">#666</color>
 </resources>

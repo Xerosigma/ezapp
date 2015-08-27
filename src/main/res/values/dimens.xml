@@ -45,4 +45,11 @@
     <dimen name="round_button_diameter">48dp</dimen>
     <dimen name="elevation_low">1dp</dimen>
     <dimen name="elevation_high">4dp</dimen>
+
+    <!-- Text -->
+    <dimen name="textSizeDefault">@dimen/textSizeSmall</dimen>
+    <dimen name="textSizeSmall">12sp</dimen>
+    <dimen name="textSizeMedium">14sp</dimen>
+    <dimen name="textSizeLarge">18sp</dimen>
+    <dimen name="textSizeHuge">24sp</dimen>
 </resources>

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
-import com.nestorledon.ezapp.base.widgets.EZNavigable;
+import com.nestorledon.ezapp.base.widgets.NavigableView;
 
 
 /**
@@ -17,7 +17,7 @@ import com.nestorledon.ezapp.base.widgets.EZNavigable;
  * TODO: Consider making members PRIVATE and require setting via constructor.
  * Created by nestorledon on 2/21/15.
  */
-public abstract class FragmentBase extends Fragment implements EZNavigable {
+public abstract class FragmentBase extends Fragment implements NavigableView {
 
     protected InputHandler inputHandler;
     protected String title;

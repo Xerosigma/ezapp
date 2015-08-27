@@ -1,5 +1,6 @@
 package com.nestorledon.ezapp.base;
 
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -9,6 +10,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -74,27 +76,17 @@ public abstract class ActivityBase extends ActionBarActivity {
         mToolbar.setOnMenuItemClickListener(listener);
     }
 
-    protected void setNavDrawer() {
-        HashMap<String, Integer> colorMap = new HashMap<>();
-        colorMap.put(NavigatorAdapterBase.COLOR_TEXT_ACTIVE, R.color.ez_navigation_active_item);
-        colorMap.put(NavigatorAdapterBase.COLOR_TEXT_INACTIVE, R.color.ez_nav_drawer_text);
-        setNavDrawer(colorMap);
-    }
-    protected void setNavDrawer(HashMap<String, Integer> colors) {
+    protected void setNavDrawer(final ListAdapter adapter) {
         mDrawerLayout = (AdjustedDrawerLayout) findViewById(R.id.drawer_frame);
         mDrawerList = (ListView) findViewById(R.id.navdrawer_items_list);
 
-        final ArrayList<String> sectionsAL = new ArrayList<>( Arrays.asList(mNavigator.getSections()) );
-
-        // Set the adapter for the list view
-        mDrawerList.setAdapter( new NavigatorAdapterBase( this, mNavigator, sectionsAL, colors ));
+        mDrawerList.setAdapter(adapter);
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 mDrawerLayout.closeDrawers();
-                final String section = sectionsAL.get(position);
-                mNavigator.navigate(section, view);
+                mNavigator.navigate(mDrawerList.getItemAtPosition(position), view);
             }
         });
 
@@ -132,10 +124,9 @@ public abstract class ActivityBase extends ActionBarActivity {
             getSupportActionBar().setHomeButtonEnabled(true);
         }
         mDrawerToggle.syncState();
-        mDrawerList.setSelector(R.drawable.ez_drawer_selector);
     }
 
-    protected void setTabs(List<Fragment> fragments) {
+    protected void setGlobalPagerTabs(List<Fragment> fragments) {
         PagerAdapter pagerAdapter = new PagerAdapter(fragmentManager);
 
         for (Fragment f : fragments) {
@@ -148,7 +139,6 @@ public abstract class ActivityBase extends ActionBarActivity {
 
         mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.tabmenu);
         mSlidingTabLayout.setVisibility(View.VISIBLE);
-        mSlidingTabLayout.setViewPager(mViewPager);
 
         // Need to hide content_frame since viewPager is containing the fragments.
         View v  = findViewById(R.id.content_frame);
