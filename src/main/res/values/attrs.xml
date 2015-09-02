@@ -14,4 +14,14 @@
     <declare-styleable name="BaseAppTheme">
         <attr name="actionBarIconColor" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="SlidingTabLayout">
+        <attr name="tabBackgroundColor" format="color" />
+        <attr name="tabGravity" format="enum">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+            <enum name="center" value="2" />
+        </attr>
+    </declare-styleable>
+
 </resources>
