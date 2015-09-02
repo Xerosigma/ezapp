@@ -1,4 +1,4 @@
-package com.nestorledon.ezapp.base;
+package com.nestorledon.ezapp;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.nestorledon.ezapp.base.widgets.NavigableView;
+import com.nestorledon.ezmvp.InputHandler;
 
 
 /**

@@ -1,6 +1,6 @@
-package com.nestorledon.ezapp.base.presenter;
+package com.nestorledon.ezmvp.presenter;
 
-import com.nestorledon.ezapp.EventController;
+import com.nestorledon.ezmvp.EventController;
 
 /**
  * Created by nestorledon on 5/9/15.

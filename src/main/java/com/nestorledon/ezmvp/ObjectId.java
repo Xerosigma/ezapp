@@ -1,4 +1,4 @@
-package com.nestorledon.ezapp.base;
+package com.nestorledon.ezmvp;
 /*
  * Copyright (c) 2008-2014 MongoDB, Inc.
  *

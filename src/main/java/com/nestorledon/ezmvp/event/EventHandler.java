@@ -1,4 +1,4 @@
-package com.nestorledon.ezapp.base.event;
+package com.nestorledon.ezmvp.event;
 
 import java.util.ArrayList;
 import java.util.List;

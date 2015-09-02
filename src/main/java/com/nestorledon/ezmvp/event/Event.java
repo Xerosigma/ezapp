@@ -1,4 +1,4 @@
-package com.nestorledon.ezapp.base.event;
+package com.nestorledon.ezmvp.event;
 
 /**
  * Created by nestorledon on 5/9/15.

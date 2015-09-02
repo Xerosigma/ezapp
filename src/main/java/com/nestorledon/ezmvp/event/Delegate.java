@@ -1,4 +1,4 @@
-package com.nestorledon.ezapp.base.event;
+package com.nestorledon.ezmvp.event;
 
 /**
  * An interface representing a callback.

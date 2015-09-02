@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.nestorledon.ezapp.base.widgets;
+package com.nestorledon.ezapp.base.widgets.slidingtab;
 
 import android.content.Context;
 import android.graphics.Point;
@@ -41,6 +41,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nestorledon.ezapp.R;
+import com.nestorledon.ezapp.base.widgets.NavigableView;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.nestorledon.ezapp.base.widgets;
+package com.nestorledon.ezapp.base.widgets.slidingtab;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
@@ -24,17 +24,17 @@ import android.widget.RelativeLayout;
  *   android:layout_width="match_parent"
  *   android:layout_height="match_parent">
  *
- *   <com.nestorledon.ezapp.base.widgets.SlidingTabViewPager
+ *   <com.nestorledon.ezapp.base.widgets.slidingtab.SlidingTabViewPager
  *       android:id="@+id/homePager"
  *       android:layout_width="match_parent"
  *       android:layout_height="wrap_content">
  *
- *     <com.nestorledon.ezapp.base.widgets.SlidingTabLayout
+ *     <com.nestorledon.ezapp.base.widgets.slidingtab.SlidingTabLayout
  *         android:id="@+id/tabmenu"
  *         android:layout_width="match_parent"
  *         android:layout_height="wrap_content"/>
  *
- *   </com.nestorledon.ezapp.base.widgets.SlidingTabLayout>
+ *   </com.nestorledon.ezapp.base.widgets.slidingtab.SlidingTabLayout>
  *
  * </RelativeLayout>
  *

@@ -17,13 +17,13 @@
             android:id="@+id/content_frame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/content_start_height"/>
+            android:layout_below="@+id/toolbar"/>
 
         <!-- Toolbar -->
         <include layout="@layout/ez_toolbar" android:visibility="gone"/>
 
         <!-- Tab Layout -->
-        <com.nestorledon.ezapp.base.widgets.SlidingTabLayout
+        <com.nestorledon.ezapp.base.widgets.slidingtab.SlidingTabLayout
             android:id="@+id/tabmenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

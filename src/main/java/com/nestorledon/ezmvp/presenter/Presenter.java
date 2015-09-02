@@ -1,8 +1,8 @@
-package com.nestorledon.ezapp.base.presenter;
+package com.nestorledon.ezmvp.presenter;
 
 import android.view.View;
 
-import com.nestorledon.ezapp.base.Informer;
+import com.nestorledon.ezmvp.Informer;
 
 /**
  * Created by nestorledon on 4/24/15.

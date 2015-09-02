@@ -1,4 +1,4 @@
-package com.nestorledon.ezapp.base.widgets;
+package com.nestorledon.ezapp.base.widgets.slidingtab;
 
 /**
  * Created by nestorledon on 8/20/15.

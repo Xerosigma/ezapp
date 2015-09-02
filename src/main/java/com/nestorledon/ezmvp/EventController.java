@@ -1,4 +1,4 @@
-package com.nestorledon.ezapp;
+package com.nestorledon.ezmvp;
 
 import com.squareup.otto.Bus;
 

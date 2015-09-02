@@ -1,9 +1,9 @@
-package com.nestorledon.ezapp.base.view;
+package com.nestorledon.ezmvp.view;
 
 import android.app.Activity;
 import android.util.SparseArray;
 
-import com.nestorledon.ezapp.base.presenter.Presenter;
+import com.nestorledon.ezmvp.presenter.Presenter;
 
 /**
  * Created by nestorledon on 4/30/15.

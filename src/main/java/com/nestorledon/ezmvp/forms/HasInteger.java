@@ -1,11 +1,11 @@
-package com.nestorledon.ezapp.base.forms;
+package com.nestorledon.ezmvp.forms;
 
 /**
  * Created by nestorledon on 5/2/15.
  */
-public interface HasBoolean {
+public interface HasInteger {
 
-    Boolean getBooleanData();
+    Integer getIntegerData();
 
     int getElementId();
 

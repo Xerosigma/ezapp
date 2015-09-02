@@ -1,4 +1,4 @@
-package com.nestorledon.ezapp.base;
+package com.nestorledon.ezmvp;
 
 import android.view.View;
 

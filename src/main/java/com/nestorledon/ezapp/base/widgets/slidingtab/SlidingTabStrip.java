@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.nestorledon.ezapp.base.widgets;
+package com.nestorledon.ezapp.base.widgets.slidingtab;
 
 import android.R;
 import android.content.Context;

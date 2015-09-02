@@ -28,7 +28,7 @@
 
     <color name="ez_tint">#7f101010</color>
 
-    <color name="ez_clear">#00000000</color>
+    <color name="ez_clear">#00FFFFFF</color>
 
 
     <color name="ez_default_text">#323232</color>
