@@ -38,20 +38,4 @@ public class AdjustedDrawerLayout extends DrawerLayout {
                 MeasureSpec.getSize(heightMeasureSpec), MeasureSpec.EXACTLY);
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
-
-
-    @Override
-    public void openDrawer(int gravity) {
-
-        View drawerView = null;
-
-        final int childCount = getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            final View child = getChildAt(i);
-            if(child.getId() == R.id.activity_base_drawer) {
-                drawerView = child;
-            }
-        }
-        openDrawer(drawerView);
-    }
 }

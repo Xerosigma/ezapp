@@ -45,4 +45,8 @@
     <!-- Navigation drawer -->
     <include layout="@layout/ez_drawer_content_partial" android:visibility="invisible"/>
 
+
+    <!-- Right drawer -->
+    <include layout="@layout/ez_drawer_right_content_partial" android:visibility="invisible"/>
+
 </com.nestorledon.ezapp.base.widgets.AdjustedDrawerLayout>

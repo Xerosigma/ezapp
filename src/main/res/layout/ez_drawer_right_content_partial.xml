@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.nestorledon.ezapp.base.widgets.ScrimInsetsScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ez_drawer_right"
+    style="@style/EZDrawer.Right">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/status_bar_height"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/EZDrawerHeader.Right"
+            android:id="@+id/ez_drawer_right_header">
+
+            <TextView
+                style="@style/EZDrawerHeaderText.Right"
+                android:id="@+id/ez_drawer_right_header_text"/>
+
+        </LinearLayout>
+
+        <ListView
+            style="@style/EZDrawerNavList.Right"
+            android:id="@+id/ez_drawer_right_list"/>
+
+    </LinearLayout>
+
+</com.nestorledon.ezapp.base.widgets.ScrimInsetsScrollView>
