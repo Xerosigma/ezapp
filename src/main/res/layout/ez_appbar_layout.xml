@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.AppBarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ez_AppBarLayout"
+    style="@style/EZAppBarLayout">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/ez_Toolbar"
+        style="@style/EZToolbar"/>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/ez_TabLayout"
+        style="@style/EZTabLayout"/>
+
+</android.support.design.widget.AppBarLayout>

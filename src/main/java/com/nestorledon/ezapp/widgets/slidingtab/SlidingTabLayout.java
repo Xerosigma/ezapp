@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.nestorledon.ezapp.base.widgets.slidingtab;
+package com.nestorledon.ezapp.widgets.slidingtab;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -42,7 +42,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nestorledon.ezapp.R;
-import com.nestorledon.ezapp.base.widgets.NavigableView;
+import com.nestorledon.ezapp.navigation.NavigableView;
 
 
 /**
@@ -126,7 +126,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
                     R.styleable.SlidingTabLayout_tabBackgroundColor,
                     getResources().getColor(R.color.ez_clear));
 
-            gravityInt = ta.getInteger(R.styleable.SlidingTabLayout_tabGravity, Gravity.NO_GRAVITY);
+            gravityInt = ta.getInteger(R.styleable.SlidingTabLayout_tabGravityLegacy, Gravity.NO_GRAVITY);
 
         } finally {
             ta.recycle();

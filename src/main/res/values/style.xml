@@ -1,15 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="NewApi">
 
-    <style name="EZToolbar">
-        <item name="android:layout_height">wrap_content</item>
+    <style name="EZDrawerLayout">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:minHeight">?attr/actionBarSize</item>
-        <item name="android:background">?attr/colorPrimary</item>
-        <item name="android:paddingTop">@dimen/status_bar_height</item>
-        <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:fitsSystemWindows">true</item>
     </style>
+
+    <style name="EZCoordinatorLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="EZAppBarLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    </style>
+
+    <!-- FIXME: Update -->
+    <style name="EZAppBarLayoutCollapse">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">280dp</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    </style>
+
+    <!-- FIXME: Update -->
+    <style name="EZAppCollapsingToolbarLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="contentScrim">@color/ez_primary</item>
+        <item name="expandedTitleMarginEnd">96dp</item>
+        <item name="layout_scrollFlags">scroll|exitUntilCollapsed</item>
+    </style>
+
+    <!-- FIXME: Update -->
+    <style name="EZAppCollapsingToolbarContentLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="EZToolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="layout_scrollFlags">scroll|enterAlways|snap</item>
+        <item name="layout_collapseMode">pin</item>
+    </style>
+
+    <style name="EZTabLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="EZTabViewPager">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="layout_behavior">@string/appbar_scrolling_view_behavior</item>
+    </style>
+
+    <style name="EZSlidingTabLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="tabMode">fixed</item>
+        <item name="tabGravity">fill</item>
+        <item name="layout_scrollFlags">scroll|enterAlways</item>
+    </style>
+
+    <style name="EZNestedScrollView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="layout_behavior">@string/appbar_scrolling_view_behavior</item>
+    </style>
+
+    <style name="EZNestedScrollViewContent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="EZMainContentView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="EZViewPager">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="layout_scrollFlags">scroll|enterAlways</item>
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <style name="EZDrawer">
         <item name="android:layout_width">@dimen/nav_drawer_width</item>
@@ -18,7 +120,7 @@
         <item name="android:fitsSystemWindows">true</item>
         <item name="android:fillViewport">true</item>
         <item name="android:background">@color/ez_accent_light</item>
-        <item name="insetForeground">@color/ez_horizontal_rule</item>
+        <item name="insetForegroundLegacy">@color/ez_horizontal_rule</item>
     </style>
 
     <style name="EZDrawer.Right">
@@ -28,7 +130,7 @@
         <item name="android:fitsSystemWindows">true</item>
         <item name="android:fillViewport">true</item>
         <item name="android:background">@color/ez_accent_light</item>
-        <item name="insetForeground">@color/ez_horizontal_rule</item>
+        <item name="insetForegroundLegacy">@color/ez_horizontal_rule</item>
     </style>
 
     <style name="EZDrawerHeader">
@@ -146,12 +248,11 @@
         -->
     </style>
 
-    <style name="EZFloatingButton">
-        <item name="android:layout_width">@dimen/floating_button_size</item>
-        <item name="android:layout_height">@dimen/floating_button_size</item>
-        <item name="android:layout_margin">@dimen/margin_small</item>
-        <item name="android:alpha">1.0</item>
-        <item name="android:background">@drawable/button_floating_background</item>
+    <style name="EZFloatingActionButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:clickable">true</item>
     </style>
 
     <style name="EZTextField">

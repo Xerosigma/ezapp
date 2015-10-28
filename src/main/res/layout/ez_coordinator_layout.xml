@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ez_CoordinatorLayout"
+    style="@style/EZCoordinatorLayout">
+
+    <include layout="@layout/ez_appbar_layout"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/ez_TabViewPager"
+        style="@style/EZTabViewPager"/>
+
+    <android.support.v4.widget.NestedScrollView
+        style="@style/EZNestedScrollView">
+
+        <LinearLayout
+            style="@style/EZNestedScrollViewContent">
+
+            <!--
+            <com.nestorledon.ezapp.widgets.slidingtab.SlidingTabLayout
+                android:id="@+id/ez_Tabs"
+                style="@style/EZSlidingTabLayout"
+                app:layout_collapseMode="pin"/> -->
+
+            <!-- Main Content View / Fragment Container -->
+            <FrameLayout
+                android:id="@+id/ez_Content"
+                style="@style/EZMainContentView"/>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_menu_share" />
+
+</android.support.design.widget.CoordinatorLayout>
