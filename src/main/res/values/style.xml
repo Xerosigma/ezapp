@@ -18,42 +18,59 @@
         <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
     </style>
 
-    <!-- FIXME: Update -->
+    <!-- Collapse Specific Styles -->
     <style name="EZAppBarLayoutCollapse">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">280dp</item>
-        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:layout_height">256dp</item>                                 <!-- diff -->
         <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+        <item name="android:fitsSystemWindows">true</item>                              <!-- diff -->
     </style>
 
-    <!-- FIXME: Update -->
     <style name="EZAppCollapsingToolbarLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:fitsSystemWindows">true</item>
-        <item name="contentScrim">@color/ez_primary</item>
-        <item name="expandedTitleMarginEnd">96dp</item>
+        <item name="contentScrim">?attr/colorPrimary</item>
+        <item name="expandedTitleMarginStart">48dp</item>
+        <item name="expandedTitleMarginEnd">64dp</item>
         <item name="layout_scrollFlags">scroll|exitUntilCollapsed</item>
+        <item name="android:fitsSystemWindows">true</item>
     </style>
 
-    <!-- FIXME: Update -->
     <style name="EZAppCollapsingToolbarContentLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
     </style>
 
+    <style name="EZCoordinatorLayoutCollapse">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:fitsSystemWindows">true</item><!---->
+    </style>
+
+    <style name="EZToolbarCollapse">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="layout_collapseMode">pin</item>
+        <!-- <item name="android:background">?attr/colorPrimary</item> -->
+        <!-- <item name="layout_scrollFlags">scroll|enterAlways|snap</item> -->
+    </style>
+    <!-- END: Collapse Specific Styles -->
+
     <style name="EZToolbar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
-        <item name="android:background">?attr/colorPrimary</item>
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
-        <item name="layout_scrollFlags">scroll|enterAlways|snap</item>
         <item name="layout_collapseMode">pin</item>
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="layout_scrollFlags">scroll|enterAlways|snap</item>
     </style>
 
     <style name="EZTabLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="layout_scrollFlags">scroll|enterAlways|snap</item>
+        <item name="android:visibility">gone</item>
     </style>
 
     <style name="EZTabViewPager">

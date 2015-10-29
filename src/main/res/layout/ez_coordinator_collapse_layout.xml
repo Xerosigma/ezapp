@@ -5,7 +5,7 @@
     android:id="@+id/ez_CoordinatorLayout"
     style="@style/EZCoordinatorLayout">
 
-    <include layout="@layout/ez_appbar_layout"/>
+    <include layout="@layout/ez_appbar_collapse_layout"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/ez_TabViewPager"
@@ -16,6 +16,11 @@
 
         <LinearLayout
             style="@style/EZNestedScrollViewContent">
+
+            <!-- FIXME: Work in progress on TabLayout placement. -->
+            <android.support.design.widget.TabLayout
+                android:id="@+id/ez_TabLayout"
+                style="@style/EZTabLayout"/>
 
             <!-- Main Content View / Fragment Container -->
             <FrameLayout
