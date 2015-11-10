@@ -1,13 +1,12 @@
 package com.nestorledon.ezapp;
 
-import android.os.Build;
 import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
-import android.support.v4.app.Fragment;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,17 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.nestorledon.ezapp.navigation.Navigator;
-import com.nestorledon.ezapp.base.PagerAdapter;
 import com.nestorledon.ezapp.widgets.slidingtab.SlidingTabLayout;
-
-import java.util.List;
 
 /**
  * An activity class for handling basic scaffolding
@@ -43,12 +38,16 @@ public abstract class ActivityBase extends AppCompatActivity {
     public final static String TAG = ActivityBase.class.getCanonicalName();
 
     protected Toolbar mToolbar;
+    protected TabLayout mTabLayout;
+    protected NestedScrollView mNestedScrollView;
+    protected FrameLayout mContentContainer;
     protected DrawerLayout mDrawerLayout;
     protected ListView mDrawerList;
     protected ActionBarDrawerToggle mDrawerToggle;
-    protected FragmentManager fragmentManager = getSupportFragmentManager();
     protected ViewPager mViewPager;
     protected SlidingTabLayout mSlidingTabLayout;
+
+    protected FragmentManager fragmentManager = getSupportFragmentManager();
     protected boolean hideOptionsMenu = false;
     protected boolean poppingBackStack = false;
 
@@ -60,11 +59,17 @@ public abstract class ActivityBase extends AppCompatActivity {
 
 
     protected void configureActivity(Navigator navigator) {
-        this.mNavigator = navigator;
+        mNavigator = navigator;
+        mNestedScrollView = (NestedScrollView) findViewById(R.id.ez_NestedScrollView);
+        mContentContainer = (FrameLayout) findViewById(R.id.ez_Content);
+        mViewPager = (ViewPager) findViewById(R.id.ez_TabViewPager);
     }
     protected void configureActivity(Navigator navigator, boolean hideOptionsMenu) {
-        this.mNavigator = navigator;
-        this.hideOptionsMenu = hideOptionsMenu;
+        mNavigator = navigator;
+        mNestedScrollView = (NestedScrollView) findViewById(R.id.ez_NestedScrollView);
+        mContentContainer = (FrameLayout) findViewById(R.id.ez_Content);
+        mViewPager = (ViewPager) findViewById(R.id.ez_TabViewPager);
+        hideOptionsMenu = hideOptionsMenu;
         View v  = findViewById(R.id.ez_Content);
         v.setVisibility(View.VISIBLE);
     }
@@ -110,9 +115,33 @@ public abstract class ActivityBase extends AppCompatActivity {
         actionBar.setHomeAsUpIndicator(R.drawable.ez_ic_ab_drawer);
     }
 
+
     protected void setToolbarListener(Toolbar.OnMenuItemClickListener listener) {
         mToolbar.setOnMenuItemClickListener(listener);
     }
+
+
+    protected void setTabLayout() throws TabLayoutNotFoundException {
+        setTabLayout(R.id.ez_TabLayout);
+    }
+
+
+    protected void setTabLayout(@Nullable Integer tabLayoutId) throws TabLayoutNotFoundException {
+        mTabLayout = (TabLayout) findViewById(tabLayoutId);
+
+        if(null == mTabLayout) {
+            mTabLayout = (TabLayout) findViewById(R.id.ez_TabLayout);
+            if(null == mTabLayout) {
+                throw new TabLayoutNotFoundException();
+            }
+        }
+
+        // Hide content container(ez_Content) so pager is not overlapping.
+        mNestedScrollView.setVisibility(View.GONE);
+
+        mTabLayout.setVisibility(View.VISIBLE);
+    }
+
 
     protected void setNavDrawer(final ListAdapter adapter) {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.ez_DrawerLayout);
@@ -165,26 +194,6 @@ public abstract class ActivityBase extends AppCompatActivity {
     }
 
 
-    /*
-    protected void setGlobalPagerTabs(List<Fragment> fragments) {
-        PagerAdapter pagerAdapter = new PagerAdapter(fragmentManager);
-
-        for (Fragment f : fragments) {
-            pagerAdapter.addFragment(f);
-        }
-
-        mViewPager = (ViewPager) findViewById(R.id.ez_TabViewPager);
-        mViewPager.setVisibility(View.VISIBLE);
-        mViewPager.setAdapter(pagerAdapter);
-
-        mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.ez_Tabs);
-        mSlidingTabLayout.setVisibility(View.VISIBLE);
-
-        // Need to hide ez_Content since viewPager is containing the fragments.
-        //View v  = findViewById(R.id.ez_Content);
-        //v.setVisibility(View.GONE);
-    }*/
-
     public void replaceMainFragment(final FragmentBase fragment, final boolean addToBackStack, final boolean allowStateLoss, final boolean animateWithSlide) {
         runOnUiThread(new Runnable() {
             @Override
@@ -224,6 +233,7 @@ public abstract class ActivityBase extends AppCompatActivity {
         });
     }
 
+
     /**
      * Add items to ActionBar/ToolBar.
      * @param menu
@@ -235,6 +245,7 @@ public abstract class ActivityBase extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.ez_toolbar_main_menu, menu);
         return true;
     }
+
 
     // FIXME: Review
     public void updateSideNav() {
@@ -253,6 +264,13 @@ public abstract class ActivityBase extends AppCompatActivity {
     public class ToolbarNotFoundException extends Exception {
         public ToolbarNotFoundException() {
             super("Toolbar not found! Please call setToolbar() with valid toolbar resource id.");
+        }
+    }
+
+
+    public class TabLayoutNotFoundException extends Exception {
+        public TabLayoutNotFoundException() {
+            super("TabLayout not found! Please call setTabLayout() with valid TabLayout resource id.");
         }
     }
 

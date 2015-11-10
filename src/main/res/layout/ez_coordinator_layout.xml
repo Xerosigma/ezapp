@@ -11,7 +11,9 @@
         android:id="@+id/ez_TabViewPager"
         style="@style/EZTabViewPager"/>
 
+    <!-- Content nested scrollview. -->
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/ez_NestedScrollView"
         style="@style/EZNestedScrollView">
 
         <LinearLayout

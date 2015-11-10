@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.nestorledon.ezapp.navigation.NavigableView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,25 +14,44 @@ import java.util.List;
  */
 public class PagerAdapter extends FragmentPagerAdapter {
 
-    private List<Fragment> mFragments = null;
+    private List<NavigableView> mFragments = new ArrayList<>();
+
 
     public PagerAdapter(FragmentManager fm) {
         super(fm);
-        mFragments = new ArrayList<>();
     }
+
+
+    public PagerAdapter(FragmentManager fm, ArrayList fragments) {
+        super(fm);
+        mFragments = fragments;
+    }
+
 
     @Override
     public Fragment getItem(int position) {
-        return mFragments.get(position);
+        if(mFragments.get(position) instanceof Fragment) {
+            return (Fragment) mFragments.get(position);
+        } else {
+            return null;
+        }
     }
+
 
     @Override
     public int getCount() {
         return mFragments.size();
     }
 
-    public void addFragment(Fragment fragment) {
-        mFragments.add(fragment);
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return mFragments.get(position).getTitle();
+    }
+
+
+    public void addFragment(NavigableView navigableView) {
+        mFragments.add(navigableView);
         notifyDataSetChanged();
     }
 }

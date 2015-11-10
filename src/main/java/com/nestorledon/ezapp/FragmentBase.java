@@ -1,7 +1,5 @@
 package com.nestorledon.ezapp;
 
-import android.app.Activity;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.nestorledon.ezapp.navigation.NavigableView;
@@ -19,23 +17,4 @@ import com.nestorledon.ezapp.navigation.NavigableView;
 public abstract class FragmentBase extends Fragment implements NavigableView {
 
     protected String title;
-
-    public FragmentBase() {
-        // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
 }
