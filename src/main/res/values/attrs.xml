@@ -3,7 +3,7 @@
 
     <!-- Drawer Inset / Fake Status Bar -->
     <declare-styleable name="ScrimInsetsView">
-        <attr name="insetForeground" format="reference|color" />
+        <attr name="insetForegroundLegacy" format="reference|color" />
     </declare-styleable>
 
     <declare-styleable name="SpotlightView">
@@ -17,7 +17,7 @@
 
     <declare-styleable name="SlidingTabLayout">
         <attr name="tabBackgroundColor" format="color" />
-        <attr name="tabGravity" format="enum">
+        <attr name="tabGravityLegacy" format="enum">
             <enum name="left" value="0" />
             <enum name="right" value="1" />
             <enum name="center" value="2" />

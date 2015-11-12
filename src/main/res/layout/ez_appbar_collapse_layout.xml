@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.AppBarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ez_AppBarLayout"
+    style="@style/EZAppBarLayoutCollapse">
+
+    <android.support.design.widget.CollapsingToolbarLayout
+        android:id="@+id/ez_CollapsingToolbarLayout"
+        style="@style/EZAppCollapsingToolbarLayout">
+
+        <LinearLayout
+            android:id="@+id/ez_CollapsingToolbarContentLayout"
+            style="@style/EZAppCollapsingToolbarContentLayout">
+
+            <!-- TODO: MODULARIZE ??? -->
+            <ImageView
+                android:id="@+id/ez_CollapsingToolbarImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_collapseMode="parallax"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_avatars"
+                android:fitsSystemWindows="true"/>
+
+        </LinearLayout>
+
+        <!-- Toolbar gets injected here -->
+        <android.support.v7.widget.Toolbar
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/ez_Toolbar"
+            style="@style/EZToolbarCollapse"/>
+
+    </android.support.design.widget.CollapsingToolbarLayout>
+
+</android.support.design.widget.AppBarLayout>

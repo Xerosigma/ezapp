@@ -1,24 +1,26 @@
 package com.nestorledon.ezapp;
 
-import android.support.v4.app.Fragment;
+import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.NestedScrollView;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import com.nestorledon.ezapp.base.Navigator;
-import com.nestorledon.ezapp.base.PagerAdapter;
-import com.nestorledon.ezapp.base.widgets.AdjustedDrawerLayout;
-import com.nestorledon.ezapp.base.widgets.slidingtab.SlidingTabLayout;
-
-import java.util.List;
+import com.nestorledon.ezapp.navigation.Navigator;
+import com.nestorledon.ezapp.widgets.slidingtab.SlidingTabLayout;
 
 /**
  * An activity class for handling basic scaffolding
@@ -31,19 +33,25 @@ import java.util.List;
  * NOTE: Provide robust overloads to avoid modifications to this class.
  * Created by nestorledon on 2/21/15.
  */
-public abstract class ActivityBase extends ActionBarActivity {
+public abstract class ActivityBase extends AppCompatActivity {
+
+    public final static String TAG = ActivityBase.class.getCanonicalName();
 
     protected Toolbar mToolbar;
-    protected AdjustedDrawerLayout mDrawerLayout;
+    protected TabLayout mTabLayout;
+    protected NestedScrollView mNestedScrollView;
+    protected FrameLayout mContentContainer;
+    protected DrawerLayout mDrawerLayout;
     protected ListView mDrawerList;
     protected ActionBarDrawerToggle mDrawerToggle;
-    protected FragmentManager fragmentManager = getSupportFragmentManager();
     protected ViewPager mViewPager;
     protected SlidingTabLayout mSlidingTabLayout;
+
+    protected FragmentManager fragmentManager = getSupportFragmentManager();
     protected boolean hideOptionsMenu = false;
     protected boolean poppingBackStack = false;
 
-    protected final int CONTENT_FRAME = R.id.content_frame;
+    protected final int CONTENT_FRAME = R.id.ez_Content;
 
     /** Object responsible for navigation, cyclic reference to child activity. */
     protected Navigator mNavigator;
@@ -51,29 +59,92 @@ public abstract class ActivityBase extends ActionBarActivity {
 
 
     protected void configureActivity(Navigator navigator) {
-        this.mNavigator = navigator;
+        mNavigator = navigator;
+        mNestedScrollView = (NestedScrollView) findViewById(R.id.ez_NestedScrollView);
+        mContentContainer = (FrameLayout) findViewById(R.id.ez_Content);
+        mViewPager = (ViewPager) findViewById(R.id.ez_TabViewPager);
     }
     protected void configureActivity(Navigator navigator, boolean hideOptionsMenu) {
-        this.mNavigator = navigator;
-        this.hideOptionsMenu = hideOptionsMenu;
+        mNavigator = navigator;
+        mNestedScrollView = (NestedScrollView) findViewById(R.id.ez_NestedScrollView);
+        mContentContainer = (FrameLayout) findViewById(R.id.ez_Content);
+        mViewPager = (ViewPager) findViewById(R.id.ez_TabViewPager);
+        hideOptionsMenu = hideOptionsMenu;
+        View v  = findViewById(R.id.ez_Content);
+        v.setVisibility(View.VISIBLE);
     }
 
-    protected void setToolbar() {
+
+    /**
+     * Configures and enables default toolbar.
+     */
+    protected void setToolbar() throws ToolbarNotFoundException {
         setToolbar(null);
     }
-    protected void setToolbar(Integer logo) {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+
+
+    /**
+     * Configures and enables default toolbar with logo.
+     * @param logo drawable id.
+     */
+    protected void setToolbar(@Nullable Integer logo) throws ToolbarNotFoundException {
+        setToolbar(R.id.ez_Toolbar, logo);
+    }
+
+
+    /**
+     * Configures and enables provided toolbar with logo.
+     * @param toolbarId toolbar id.
+     * @param logo drawable id.
+     */
+    protected void setToolbar(@Nullable Integer toolbarId , @Nullable Integer logo) throws ToolbarNotFoundException {
+        mToolbar = (Toolbar) findViewById(toolbarId);
         if(null != logo) { mToolbar.setLogo(logo); }
+
+        if(null == mToolbar) {
+            mToolbar = (Toolbar) findViewById(R.id.ez_Toolbar);
+            if(null == mToolbar) {
+                throw new ToolbarNotFoundException();
+            }
+        }
+
         mToolbar.setVisibility(View.VISIBLE);
         setSupportActionBar(mToolbar);
+
+        final ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeAsUpIndicator(R.drawable.ez_ic_ab_drawer);
     }
+
 
     protected void setToolbarListener(Toolbar.OnMenuItemClickListener listener) {
         mToolbar.setOnMenuItemClickListener(listener);
     }
 
+
+    protected void setTabLayout() throws TabLayoutNotFoundException {
+        setTabLayout(R.id.ez_TabLayout);
+    }
+
+
+    protected void setTabLayout(@Nullable Integer tabLayoutId) throws TabLayoutNotFoundException {
+        mTabLayout = (TabLayout) findViewById(tabLayoutId);
+
+        if(null == mTabLayout) {
+            mTabLayout = (TabLayout) findViewById(R.id.ez_TabLayout);
+            if(null == mTabLayout) {
+                throw new TabLayoutNotFoundException();
+            }
+        }
+
+        // Hide content container(ez_Content) so pager is not overlapping.
+        mNestedScrollView.setVisibility(View.GONE);
+
+        mTabLayout.setVisibility(View.VISIBLE);
+    }
+
+
     protected void setNavDrawer(final ListAdapter adapter) {
-        mDrawerLayout = (AdjustedDrawerLayout) findViewById(R.id.drawer_frame);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.ez_DrawerLayout);
         mDrawerList = (ListView) findViewById(R.id.navdrawer_items_list);
 
         mDrawerList.setAdapter(adapter);
@@ -122,24 +193,6 @@ public abstract class ActivityBase extends ActionBarActivity {
         mDrawerToggle.syncState();
     }
 
-    protected void setGlobalPagerTabs(List<Fragment> fragments) {
-        PagerAdapter pagerAdapter = new PagerAdapter(fragmentManager);
-
-        for (Fragment f : fragments) {
-            pagerAdapter.addFragment(f);
-        }
-
-        mViewPager = (ViewPager) findViewById(R.id.viewPager);
-        mViewPager.setVisibility(View.VISIBLE);
-        mViewPager.setAdapter(pagerAdapter);
-
-        mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.tabmenu);
-        mSlidingTabLayout.setVisibility(View.VISIBLE);
-
-        // Need to hide content_frame since viewPager is containing the fragments.
-        View v  = findViewById(R.id.content_frame);
-        v.setVisibility(View.GONE);
-    }
 
     public void replaceMainFragment(final FragmentBase fragment, final boolean addToBackStack, final boolean allowStateLoss, final boolean animateWithSlide) {
         runOnUiThread(new Runnable() {
@@ -180,15 +233,6 @@ public abstract class ActivityBase extends ActionBarActivity {
         });
     }
 
-    /**
-     * Called from XML. Text/File search for
-     * "onUIClick" for uses.
-     * @param view
-     */
-    @SuppressWarnings("UnusedDeclaration")
-    public void onUIClick(View view) {
-        mCurrentFragment.onUIAction(view);
-    }
 
     /**
      * Add items to ActionBar/ToolBar.
@@ -202,9 +246,38 @@ public abstract class ActivityBase extends ActionBarActivity {
         return true;
     }
 
+
     // FIXME: Review
     public void updateSideNav() {
         final ListAdapter adapter = mDrawerList.getAdapter();
         mDrawerList.setAdapter(adapter);
+    }
+
+
+    public class AppBarLayoutNotFoundException extends Exception {
+        public AppBarLayoutNotFoundException() {
+            super("AppBarLayout not found! Have you set your activity's content view? setContentView(R.layout.main_drawer_frame);");
+        }
+    }
+
+
+    public class ToolbarNotFoundException extends Exception {
+        public ToolbarNotFoundException() {
+            super("Toolbar not found! Please call setToolbar() with valid toolbar resource id.");
+        }
+    }
+
+
+    public class TabLayoutNotFoundException extends Exception {
+        public TabLayoutNotFoundException() {
+            super("TabLayout not found! Please call setTabLayout() with valid TabLayout resource id.");
+        }
+    }
+
+
+    public class CollapsibleToolbarLayoutNotFoundException extends Exception {
+        public CollapsibleToolbarLayoutNotFoundException() {
+            super("CollapsibleToolbarLayout not found! Have you called showCollapsibleToolbar()?");
+        }
     }
 }

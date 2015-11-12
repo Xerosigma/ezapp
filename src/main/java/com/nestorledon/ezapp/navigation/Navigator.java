@@ -1,4 +1,4 @@
-package com.nestorledon.ezapp.base;
+package com.nestorledon.ezapp.navigation;
 
 import android.view.View;
 

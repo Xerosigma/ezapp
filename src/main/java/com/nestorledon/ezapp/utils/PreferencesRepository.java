@@ -1,29 +1,41 @@
-package com.nestorledon.ezapp.base;
+package com.nestorledon.ezapp.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.util.Collection;
+
 
 /**
+ * An overly simplified repository serializing/de-serializing
+ * objects to and from JSON and storing/retrieving them from SharedPreferences.
+ *
  * Created by nestorledon on 4/3/15.
  */
 public class PreferencesRepository {
 
     private final static String TAG = PreferencesRepository.class.getSimpleName();
 
+
     /**
      * Saves data to preferences as JSON string.
+     *
+     * Example:
+     * <pre>
+     * {@code
+     * Object object = PreferencesRepository.setData(getActivity(), Object.class, PREFS_FILE, PREFS_KEY, object);
+     * }
+     * </pre>
      * @param context
      * @param object
      * @param fileName
      * @param dataKey
      * @param <T>
      * @return the saved object. Null if failed.
+     *
+     * @
      */
     public static <T> T setData(Context context, Type type, String fileName, String dataKey, T object) {
 
@@ -39,8 +51,17 @@ public class PreferencesRepository {
         return (T) getData(context, type, fileName, dataKey);
     }
 
+
     /**
      * Retrieves data from preferences.
+     *
+     * Example:
+     * <pre>
+     * {@code
+     * Object object = PreferencesRepository.getData(getActivity(), Object.class, PREFS_FILE, PREFS_KEY);
+     * }
+     * </pre>
+     *
      * @param context
      * @param type
      * @param fileName

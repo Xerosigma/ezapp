@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.nestorledon.ezapp.base.widgets.ScrimInsetsScrollView
+<com.nestorledon.ezapp.widgets.ScrimInsetsScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ez_drawer_right"
     style="@style/EZDrawer.Right">
@@ -26,4 +26,4 @@
 
     </LinearLayout>
 
-</com.nestorledon.ezapp.base.widgets.ScrimInsetsScrollView>
+</com.nestorledon.ezapp.widgets.ScrimInsetsScrollView>

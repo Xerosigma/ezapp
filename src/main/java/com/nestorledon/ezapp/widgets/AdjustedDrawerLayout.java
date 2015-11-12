@@ -1,12 +1,8 @@
-package com.nestorledon.ezapp.base.widgets;
+package com.nestorledon.ezapp.widgets;
 
 import android.content.Context;
 import android.support.v4.widget.DrawerLayout;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.nestorledon.ezapp.R;
 
 
 /**

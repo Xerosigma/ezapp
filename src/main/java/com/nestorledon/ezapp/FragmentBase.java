@@ -1,12 +1,8 @@
 package com.nestorledon.ezapp;
 
-import android.app.Activity;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.View;
 
-import com.nestorledon.ezapp.base.widgets.NavigableView;
-import com.nestorledon.ezmvp.InputHandler;
+import com.nestorledon.ezapp.navigation.NavigableView;
 
 
 /**
@@ -20,29 +16,5 @@ import com.nestorledon.ezmvp.InputHandler;
  */
 public abstract class FragmentBase extends Fragment implements NavigableView {
 
-    protected InputHandler inputHandler;
     protected String title;
-
-    public FragmentBase() {
-        // Required empty public constructor
-    }
-
-    public void onUIAction(View v) {
-        inputHandler.handleOnClick(v);
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
 }

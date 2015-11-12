@@ -1,4 +1,4 @@
-package com.nestorledon.ezapp.base.widgets;
+package com.nestorledon.ezapp.navigation;
 
 
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.nestorledon.ezapp.base.widgets;
+package com.nestorledon.ezapp.widgets;
 
 
 import android.content.Context;
@@ -44,7 +44,7 @@ public class ScrimInsetsScrollView extends ScrollView {
         if (a == null) {
             return;
         }
-        mInsetForeground = a.getDrawable(R.styleable.ScrimInsetsView_insetForeground);
+        mInsetForeground = a.getDrawable(R.styleable.ScrimInsetsView_insetForegroundLegacy);
         a.recycle();
 
         setWillNotDraw(true);

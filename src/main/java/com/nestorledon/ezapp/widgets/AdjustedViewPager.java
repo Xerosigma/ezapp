@@ -1,4 +1,4 @@
-package com.nestorledon.ezapp.base.widgets;
+package com.nestorledon.ezapp.widgets;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
