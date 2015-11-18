@@ -4,14 +4,15 @@
         <item name="colorPrimary">@color/ez_primary</item>
         <item name="colorPrimaryDark">@color/ez_primary_dark</item>
         <item name="colorAccent">@color/ez_accent</item>
+        <item name="android:textColorPrimary">@color/ez_primary_text</item>
 
         <item name="android:alertDialogTheme">@style/BaseTheme.Dialog</item>
     </style>
 
     <style name="BaseTheme.Dialog" parent="Theme.AppCompat.Dialog">
-        <item name="colorPrimary">@color/ez_primary</item>
-        <item name="colorPrimaryDark">@color/ez_primary_dark</item>
-        <item name="colorAccent">@color/ez_accent</item>
+        <item name="colorPrimary">?attr/colorPrimary</item>
+        <item name="colorPrimaryDark">?attr/colorPrimaryDark</item>
+        <item name="colorAccent">?attr/colorAccent</item>
     </style>
 
     <style name="AppTheme" parent="BaseTheme" />
@@ -24,7 +25,7 @@
     <style name="BaseNavDrawerItem">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">@dimen/margin</item>
+        <item name="android:padding">@dimen/marginMedium</item>
         <item name="android:background">?android:attr/selectableItemBackground</item>
         <item name="android:textColor">@color/ez_nav_drawer_text</item>
         <item name="android:drawablePadding">@dimen/nav_drawer_item_drawable_padding</item>
@@ -33,8 +34,8 @@
     <style name="BaseNavDrawerSubheader">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/nav_drawer_item_height</item>
-        <item name="android:paddingLeft">@dimen/margin</item>
-        <item name="android:paddingRight">@dimen/margin</item>
+        <item name="android:paddingLeft">@dimen/marginMedium</item>
+        <item name="android:paddingRight">@dimen/marginMedium</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:textColor">@color/ez_nav_drawer_subheader_text</item>
     </style>
@@ -42,7 +43,7 @@
 
     <style name="Divider">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/divider_height</item>
+        <item name="android:layout_height">1dp</item>
         <item name="android:background">@color/ez_divider</item>
     </style>
 

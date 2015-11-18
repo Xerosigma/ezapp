@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ez_primary">#3F51B5</color>           <!-- Blue 500 -->
-    <color name="ez_primary_light">#5C6BC0</color>     <!-- Blue 400 -->
-    <color name="ez_primary_dark">#3949AB</color>      <!-- Blue 600 -->
 
-    <color name="ez_accent">#F06292</color>           <!-- Pink 300 -->
-    <color name="ez_accent_light">#F48FB1</color>     <!-- Pink 200 -->
-    <color name="ez_accent_dark">#F8BBD0</color>      <!-- Pink 100 -->
+    <!-- Material Design -->
+    <color name="ez_primary">#673AB7</color>
+    <color name="ez_primary_dark">#512DA8</color>
+    <color name="ez_primary_light">#D1C4E9</color>
+    <color name="ez_accent">#FF4081</color>
+    <color name="ez_primary_text">#212121</color>
+    <color name="ez_secondary_text">#727272</color>
+    <color name="ez_icons">#FFFFFF</color>
+    <color name="ez_divider">#B6B6B6</color>
+    <!-- FIN -->
 
     <color name="ez_error">#B71C1C</color>      <!-- Red 900 -->
 
@@ -20,8 +24,6 @@
     <color name="ez_text_light">#ffffffff</color>
     <color name="ez_text_dark">#ff444444</color>
 
-    <color name="ez_divider">#eeeeee</color>
-
     <color name="ez_nav_drawer_background">#ffffff</color>
     <color name="ez_nav_drawer_text">#de000000</color>
     <color name="ez_nav_drawer_subheader_text">#8a000000</color>
@@ -30,9 +32,8 @@
 
     <color name="ez_clear">#00FFFFFF</color>
 
+    <color name="ez_text_drawer_active">@color/ez_secondary_text</color>
+    <color name="ez_text_drawer_inactive">@color/ez_secondary_text</color>
 
     <color name="ez_default_text">#323232</color>
-
-    <color name="ez_text_drawer_active">@color/ez_primary</color>
-    <color name="ez_text_drawer_inactive">#666</color>
 </resources>

@@ -150,7 +150,7 @@
         <item name="android:layout_gravity">start</item>
         <item name="android:fitsSystemWindows">true</item>
         <item name="android:fillViewport">true</item>
-        <item name="android:background">@color/ez_accent_light</item>
+        <item name="android:background">?attr/colorPrimaryDark</item>
         <item name="insetForegroundLegacy">@color/ez_horizontal_rule</item>
     </style>
 
@@ -160,7 +160,7 @@
         <item name="android:layout_gravity">end</item>
         <item name="android:fitsSystemWindows">true</item>
         <item name="android:fillViewport">true</item>
-        <item name="android:background">@color/ez_accent_light</item>
+        <item name="android:background">?attr/colorPrimaryDark</item>
         <item name="insetForegroundLegacy">@color/ez_horizontal_rule</item>
     </style>
 
@@ -179,7 +179,7 @@
     <style name="EZDrawerHeaderText">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">@dimen/margin</item>
+        <item name="android:padding">@dimen/marginMedium</item>
         <item name="android:background">?android:attr/selectableItemBackground</item>
         <item name="android:textColor">@color/ez_text_light</item>
         <item name="android:drawablePadding">@dimen/nav_drawer_item_drawable_padding</item>
@@ -191,7 +191,7 @@
     <style name="EZDrawerHeaderText.Right">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">@dimen/margin</item>
+        <item name="android:padding">@dimen/marginMedium</item>
         <item name="android:background">?android:attr/selectableItemBackground</item>
         <item name="android:textColor">@color/ez_text_light</item>
         <item name="android:drawablePadding">@dimen/nav_drawer_item_drawable_padding</item>
@@ -204,7 +204,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:background">?attr/colorAccent</item>
+        <item name="android:background">@color/ez_background</item>
         <item name="android:listSelector">@drawable/ez_drawer_selector</item>
     </style>
 
@@ -212,16 +212,16 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:background">?attr/colorAccent</item>
+        <item name="android:background">@color/ez_background</item>
         <item name="android:listSelector">@drawable/ez_drawer_selector</item>
     </style>
 
     <style name="EZSpinnerItem">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingLeft">@dimen/margin_small</item>
-        <item name="android:paddingBottom">@dimen/text_padding</item>
-        <item name="android:paddingTop">@dimen/text_padding</item>
+        <item name="android:paddingLeft">@dimen/marginSmall</item>
+        <item name="android:paddingBottom">@dimen/marginMedium</item>
+        <item name="android:paddingTop">@dimen/marginMedium</item>
     </style>
 
     <style name="EZToolbarHomeButton">
@@ -266,19 +266,6 @@
         <item name="android:background">?selectableItemBackground</item>
     </style>
 
-    <style name="EZFloatingCard">
-        <item name="android:layout_width">@dimen/floating_button_size</item>
-        <item name="android:layout_height">@dimen/floating_button_size</item>
-        <item name="android:layout_marginBottom">@dimen/floating_button_margin</item>
-
-        <!--
-        <item name="cardBackgroundColor">@android:color/transparent</item>
-        <item name="cardCornerRadius">@dimen/floating_button_card_radius</item>
-        <item name="cardElevation">@dimen/button_elevation</item>
-        <item name="cardPreventCornerOverlap">false</item>
-        -->
-    </style>
-
     <style name="EZFloatingActionButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -289,8 +276,8 @@
     <style name="EZTextField">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingBottom">@dimen/text_field_padding</item>
-        <item name="android:paddingTop">@dimen/text_field_padding</item>
+        <item name="android:paddingBottom">@dimen/marginMedium</item>
+        <item name="android:paddingTop">@dimen/marginMedium</item>
     </style>
 
     <style name="EZSpinner">
@@ -301,7 +288,7 @@
     <style name="Text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/ez_default_text</item>
+        <item name="android:textColor">@color/ez_primary_text</item>
         <item name="android:textSize">@dimen/textSizeDefault</item>
     </style>
 
@@ -321,9 +308,13 @@
     </style>
 
     <style name="Text.Drawer">
-        <item name="android:textColor">@color/ez_text_drawer_active</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
         <item name="android:textSize">@dimen/textSizeMedium</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">@dimen/marginMedium</item>
+        <item name="android:layout_marginBottom">@dimen/marginMedium</item>
+        <item name="android:layout_marginLeft">24dp</item>
+        <item name="android:layout_marginRight">24dp</item>
     </style>
 
     <style name="Separator">
