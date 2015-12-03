@@ -5,19 +5,19 @@
     <item
         android:state_focused="true"
         android:state_selected="false"
-        android:drawable="@color/ez_accent"/>
+        android:drawable="@color/ez_select"/>
 
     <!-- ???? -->
     <item
         android:state_selected="true"
         android:state_focused="false"
-        android:drawable="@android:color/holo_red_light" />
+        android:drawable="@color/ez_select"/>
 
     <!-- ???? -->
     <item
         android:state_selected="true"
         android:state_focused="true"
-        android:drawable="@android:color/black"/>
+        android:drawable="@color/ez_select"/>
 
     <!-- Not Focused -->
     <item

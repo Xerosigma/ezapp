@@ -16,6 +16,7 @@
 
     <color name="ez_horizontal_rule">#44808080</color>
     <color name="ez_navigation_active_item">#aaaaaa</color>
+    <color name="ez_select">#66aaaaaa</color>
     <color name="ez_ripple">#66ffffff</color>
 
     <color name="ez_background">#ffffff</color>
