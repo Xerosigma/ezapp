@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,7 +79,7 @@ public abstract class ActivityBase extends AppCompatActivity {
     /**
      * Configures and enables default toolbar.
      */
-    protected void setToolbar() throws ToolbarNotFoundException {
+    protected void setToolbar() {
         setToolbar(null);
     }
 
@@ -87,7 +88,7 @@ public abstract class ActivityBase extends AppCompatActivity {
      * Configures and enables default toolbar with logo.
      * @param logo drawable id.
      */
-    protected void setToolbar(@Nullable Integer logo) throws ToolbarNotFoundException {
+    protected void setToolbar(@Nullable Integer logo) {
         setToolbar(R.id.ez_Toolbar, logo);
     }
 
@@ -97,14 +98,15 @@ public abstract class ActivityBase extends AppCompatActivity {
      * @param toolbarId toolbar id.
      * @param logo drawable id.
      */
-    protected void setToolbar(@Nullable Integer toolbarId , @Nullable Integer logo) throws ToolbarNotFoundException {
+    protected void setToolbar(@Nullable Integer toolbarId , @Nullable Integer logo) {
         mToolbar = (Toolbar) findViewById(toolbarId);
         if(null != logo) { mToolbar.setLogo(logo); }
 
         if(null == mToolbar) {
             mToolbar = (Toolbar) findViewById(R.id.ez_Toolbar);
             if(null == mToolbar) {
-                throw new ToolbarNotFoundException();
+                Log.e(TAG, "Toolbar not found! Please call setToolbar() with valid toolbar resource id.");
+                return;
             }
         }
 
@@ -121,18 +123,19 @@ public abstract class ActivityBase extends AppCompatActivity {
     }
 
 
-    protected void setTabLayout() throws TabLayoutNotFoundException {
+    protected void setTabLayout() {
         setTabLayout(R.id.ez_TabLayout);
     }
 
 
-    protected void setTabLayout(@Nullable Integer tabLayoutId) throws TabLayoutNotFoundException {
+    protected void setTabLayout(@Nullable Integer tabLayoutId) {
         mTabLayout = (TabLayout) findViewById(tabLayoutId);
 
         if(null == mTabLayout) {
             mTabLayout = (TabLayout) findViewById(R.id.ez_TabLayout);
             if(null == mTabLayout) {
-                throw new TabLayoutNotFoundException();
+                Log.e(TAG, "TabLayout not found! Please call setTabLayout() with valid TabLayout resource id.");
+                return;
             }
         }
 
@@ -251,33 +254,5 @@ public abstract class ActivityBase extends AppCompatActivity {
     public void updateSideNav() {
         final ListAdapter adapter = mDrawerList.getAdapter();
         mDrawerList.setAdapter(adapter);
-    }
-
-
-    public class AppBarLayoutNotFoundException extends Exception {
-        public AppBarLayoutNotFoundException() {
-            super("AppBarLayout not found! Have you set your activity's content view? setContentView(R.layout.main_drawer_frame);");
-        }
-    }
-
-
-    public class ToolbarNotFoundException extends Exception {
-        public ToolbarNotFoundException() {
-            super("Toolbar not found! Please call setToolbar() with valid toolbar resource id.");
-        }
-    }
-
-
-    public class TabLayoutNotFoundException extends Exception {
-        public TabLayoutNotFoundException() {
-            super("TabLayout not found! Please call setTabLayout() with valid TabLayout resource id.");
-        }
-    }
-
-
-    public class CollapsibleToolbarLayoutNotFoundException extends Exception {
-        public CollapsibleToolbarLayoutNotFoundException() {
-            super("CollapsibleToolbarLayout not found! Have you called showCollapsibleToolbar()?");
-        }
     }
 }

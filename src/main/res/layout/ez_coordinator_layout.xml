@@ -16,15 +16,9 @@
         android:id="@+id/ez_NestedScrollView"
         style="@style/EZNestedScrollView">
 
-        <LinearLayout
-            style="@style/EZNestedScrollViewContent">
-
-            <!-- Main Content View / Fragment Container -->
-            <FrameLayout
+        <FrameLayout
                 android:id="@+id/ez_Content"
                 style="@style/EZMainContentView"/>
-
-        </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
 
