@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 
 /**
  * Address some issues regarding drawer height.
+ *
  * Created by nestorledon on 2/24/15.
  */
 public class AdjustedDrawerLayout extends DrawerLayout {

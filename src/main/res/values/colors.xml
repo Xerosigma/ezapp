@@ -19,6 +19,17 @@
     <color name="ez_select">#66aaaaaa</color>
     <color name="ez_ripple">#66ffffff</color>
 
+    <color name="ez_textDefault">#323232</color>
+
+    <color name="ez_textDrawerActive">?attr/colorPrimary</color>
+    <color name="ez_textDrawerInactive">#666</color>
+
+    <color name="tabActive">#FFF</color>
+    <color name="tabInactive">#AAA</color>
+
+    <color name="ez_separator_dark">#333</color>
+    <color name="ez_separator_light">#999</color>
+
     <color name="ez_background">#ffffff</color>
     <color name="ez_text_secondary">#808080</color>
     <color name="ez_text_hint">#c3c3c3</color>

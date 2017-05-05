@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/ez_primary</item>
         <item name="colorPrimaryDark">@color/ez_primary_dark</item>
         <item name="colorAccent">@color/ez_accent</item>
         <item name="android:textColorPrimary">@color/ez_primary_text</item>
-
         <item name="android:alertDialogTheme">@style/BaseTheme.Dialog</item>
     </style>
 

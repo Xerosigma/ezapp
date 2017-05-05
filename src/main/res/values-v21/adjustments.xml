@@ -37,19 +37,4 @@
     <!-- Used to keep drawer content below status bar. -->
     <dimen name="status_bar_height">24dp</dimen>
 
-    <!-- Removed drawer list selectors in 21+ -->
-    <style name="EZDrawerNavList">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:orientation">vertical</item>
-        <item name="android:background">@color/ez_background</item>
-    </style>
-
-    <style name="EZDrawerNavList.Right">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:orientation">vertical</item>
-        <item name="android:background">@color/ez_background</item>
-    </style>
-
 </resources>

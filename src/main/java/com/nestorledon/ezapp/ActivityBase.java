@@ -2,6 +2,7 @@ package com.nestorledon.ezapp;
 
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -14,7 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListAdapter;
@@ -30,8 +30,6 @@ import com.nestorledon.ezapp.widgets.slidingtab.SlidingTabLayout;
  * This class also handles fragment navigation without the need
  * for modification. @see Navigator
  *
- * NOTE: Keep members as inaccessible as possible for a clean API.
- * NOTE: Provide robust overloads to avoid modifications to this class.
  * Created by nestorledon on 2/21/15.
  */
 public abstract class ActivityBase extends AppCompatActivity {
@@ -43,10 +41,8 @@ public abstract class ActivityBase extends AppCompatActivity {
     protected NestedScrollView mNestedScrollView;
     protected FrameLayout mContentContainer;
     protected DrawerLayout mDrawerLayout;
-    protected ListView mDrawerList;
     protected ActionBarDrawerToggle mDrawerToggle;
     protected ViewPager mViewPager;
-    protected SlidingTabLayout mSlidingTabLayout;
 
     protected FragmentManager fragmentManager = getSupportFragmentManager();
     protected boolean hideOptionsMenu = false;
@@ -56,7 +52,7 @@ public abstract class ActivityBase extends AppCompatActivity {
 
     /** Object responsible for navigation, cyclic reference to child activity. */
     protected Navigator mNavigator;
-    protected FragmentBase mCurrentFragment;
+    protected Fragment mCurrentFragment;
 
 
     protected void configureActivity(Navigator navigator) {
@@ -148,17 +144,6 @@ public abstract class ActivityBase extends AppCompatActivity {
 
     protected void setNavDrawer(final ListAdapter adapter) {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.ez_DrawerLayout);
-        mDrawerList = (ListView) findViewById(R.id.navdrawer_items_list);
-
-        mDrawerList.setAdapter(adapter);
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                mDrawerLayout.closeDrawers();
-                mNavigator.navigate(mDrawerList.getItemAtPosition(position), view);
-            }
-        });
 
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.drawer_open, R.string.drawer_close ) {
 
@@ -177,10 +162,6 @@ public abstract class ActivityBase extends AppCompatActivity {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 super.onDrawerSlide(drawerView, slideOffset);
-
-                float xPositionOpenDrawer = mDrawerList.getWidth();
-                float xPositionWindowContent = ( ( slideOffset * xPositionOpenDrawer ) / 2 );
-                //mCurrentFragment.setX(xPositionWindowContent);
             }
         };
 
@@ -197,7 +178,7 @@ public abstract class ActivityBase extends AppCompatActivity {
     }
 
 
-    public void replaceMainFragment(final FragmentBase fragment, final boolean addToBackStack, final boolean allowStateLoss, final boolean animateWithSlide) {
+    public void replaceMainFragment(final Fragment fragment, final boolean addToBackStack, final boolean allowStateLoss, final boolean animateWithSlide) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -247,12 +228,5 @@ public abstract class ActivityBase extends AppCompatActivity {
         if(hideOptionsMenu) { return false; }
         getMenuInflater().inflate(R.menu.ez_toolbar_main_menu, menu);
         return true;
-    }
-
-
-    // FIXME: Review
-    public void updateSideNav() {
-        final ListAdapter adapter = mDrawerList.getAdapter();
-        mDrawerList.setAdapter(adapter);
     }
 }

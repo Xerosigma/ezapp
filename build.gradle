@@ -1,21 +1,56 @@
 apply plugin: 'com.android.library'
 
+
+// Publishing
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'ez-app'
+
+    publishedGroupId = 'com.inthecheesefactory.thecheeselibrary'
+    libraryName = 'EZApp'
+    artifact = 'ez-app'
+
+    libraryDescription = 'A wrapper for Facebook Native Like Button (LikeView) on Android'
+
+    siteUrl = 'https://github.com/Xerosigma/ezapp'
+    gitUrl = 'https://github.com/Xerosigma/ezapp.git'
+
+    libraryVersion = '0.0.1'
+
+    developerId = 'nestorledon'
+    developerName = 'Nestor E. Ledon'
+    developerEmail = 'nestorledon@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+
 buildscript {
     repositories {
         mavenCentral()
+        jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.3.1'
+        classpath 'com.android.tools.build:gradle:1.5.0'
+
+        // Publishing
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
     }
 }
+
 
 repositories {
     mavenCentral()
+    jcenter()
 }
+
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion "23.0.2"
 
     defaultConfig {
         minSdkVersion 14
@@ -32,14 +67,12 @@ android {
     }
 }
 
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:design:23.1.0'
-    compile 'com.android.support:appcompat-v7:23.1.0'
-    compile 'com.android.support:support-v13:23.1.0'
-    compile 'com.android.support:cardview-v7:23.1.0'
-    compile 'com.android.support:palette-v7:23.1.0'
-
-    // Non Android - Tooling
-    compile 'com.google.code.gson:gson:2.3'
+    compile 'com.android.support:design:23.1.1'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:support-v13:23.1.1'
+    compile 'com.android.support:cardview-v7:23.1.1'
+    compile 'com.android.support:palette-v7:23.1.1'
 }

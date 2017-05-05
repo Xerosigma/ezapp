@@ -5,6 +5,7 @@ import android.view.View;
 /**
  * Contract detailing an object that can
  * handle navigation and provide navigation information.
+ *
  * Created by nestorledon on 2/21/15.
  */
 public interface Navigator {

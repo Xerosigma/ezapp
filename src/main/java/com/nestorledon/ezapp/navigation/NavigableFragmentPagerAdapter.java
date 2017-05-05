@@ -1,8 +1,9 @@
-package com.nestorledon.ezapp.base;
+package com.nestorledon.ezapp.navigation;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 
 import com.nestorledon.ezapp.navigation.NavigableView;
 
@@ -12,19 +13,24 @@ import java.util.List;
 /**
  * Created by nestorledon on 2/23/15.
  */
-public class PagerAdapter extends FragmentPagerAdapter {
+public class NavigableFragmentPagerAdapter extends FragmentPagerAdapter {
 
     private List<NavigableView> mFragments = new ArrayList<>();
 
 
-    public PagerAdapter(FragmentManager fm) {
+    public NavigableFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
 
-    public PagerAdapter(FragmentManager fm, ArrayList fragments) {
+    public NavigableFragmentPagerAdapter(FragmentManager fm, ArrayList fragments) {
         super(fm);
-        mFragments = fragments;
+
+        if(!fragments.isEmpty() && fragments.get(0) instanceof NavigableView) {
+            mFragments = fragments;
+        } else {
+            Log.e("EZApp", "Please pass a list of NavigableView's!");
+        }
     }
 
 

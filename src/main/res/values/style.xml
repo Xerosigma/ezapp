@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="NewApi">
 
+    <style name="EZNavigationDrawer">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:layout_gravity">start</item>
+    </style>
+
+    <style name="EZNavigationDrawer.Left">
+        <item name="android:layout_gravity">start</item>
+        <item name="menu">@menu/ez_drawer_left</item>
+    </style>
+
+    <style name="EZNavigationDrawer.Right">
+        <item name="android:layout_gravity">end</item>
+        <item name="menu">@menu/ez_drawer_right</item>
+    </style>
+
     <style name="EZDrawerLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
@@ -40,6 +57,7 @@
     <style name="EZAppCollapsingToolbarContentLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
     </style>
 
     <style name="EZCoordinatorLayoutCollapse">
@@ -121,98 +139,6 @@
         <item name="layout_scrollFlags">scroll|enterAlways</item>
     </style>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <style name="EZDrawer">
-        <item name="android:layout_width">@dimen/nav_drawer_width</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_gravity">start</item>
-        <item name="android:fitsSystemWindows">true</item>
-        <item name="android:fillViewport">true</item>
-        <item name="android:background">?attr/colorPrimaryDark</item>
-        <item name="insetForegroundLegacy">@color/ez_horizontal_rule</item>
-    </style>
-
-    <style name="EZDrawer.Right">
-        <item name="android:layout_width">@dimen/nav_drawer_width</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_gravity">end</item>
-        <item name="android:fitsSystemWindows">true</item>
-        <item name="android:fillViewport">true</item>
-        <item name="android:background">?attr/colorPrimaryDark</item>
-        <item name="insetForegroundLegacy">@color/ez_horizontal_rule</item>
-    </style>
-
-    <style name="EZDrawerHeader">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:orientation">vertical</item>
-    </style>
-
-    <style name="EZDrawerHeader.Right">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:orientation">vertical</item>
-    </style>
-
-    <style name="EZDrawerHeaderText">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">@dimen/marginMedium</item>
-        <item name="android:background">?android:attr/selectableItemBackground</item>
-        <item name="android:textColor">@color/ez_text_light</item>
-        <item name="android:drawablePadding">@dimen/nav_drawer_item_drawable_padding</item>
-        <item name="android:text">"Override style EZDrawerHeader"</item>
-        <item name="android:drawableLeft">@drawable/ic_star</item>
-        <item name="android:drawableStart">@drawable/ic_star</item>
-    </style>
-
-    <style name="EZDrawerHeaderText.Right">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">@dimen/marginMedium</item>
-        <item name="android:background">?android:attr/selectableItemBackground</item>
-        <item name="android:textColor">@color/ez_text_light</item>
-        <item name="android:drawablePadding">@dimen/nav_drawer_item_drawable_padding</item>
-        <item name="android:text">"Override style EZDrawerHeader"</item>
-        <item name="android:drawableLeft">@drawable/ic_star</item>
-        <item name="android:drawableStart">@drawable/ic_star</item>
-    </style>
-
-    <style name="EZDrawerNavList">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:orientation">vertical</item>
-        <item name="android:background">@color/ez_background</item>
-        <item name="android:listSelector">@drawable/ez_drawer_selector</item>
-        <item name="android:clickable">true</item>
-    </style>
-
-    <style name="EZDrawerNavList.Right">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:orientation">vertical</item>
-        <item name="android:background">@color/ez_background</item>
-        <item name="android:listSelector">@drawable/ez_drawer_selector</item>
-        <item name="android:clickable">true</item>
-    </style>
-
     <style name="EZSpinnerItem">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -222,7 +148,7 @@
     </style>
 
     <style name="EZToolbarHomeButton">
-        <item name="android:src">@drawable/ic_ab_drawer_mask</item>
+        <item name="android:src">@drawable/ez_ic_ab_drawer</item>
         <item name="android:tint">?actionBarIconColor</item>
     </style>
 
@@ -296,6 +222,18 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="Text.Header1">
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textSize">@dimen/textSizeLarge</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.Header2">
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textSize">@dimen/textSizeMedium2</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="Text.Header3">
         <item name="android:textColor">@color/ez_primary_dark</item>
         <item name="android:textSize">@dimen/textSizeLarge</item>
@@ -304,6 +242,12 @@
 
     <style name="Text.Header4">
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.Card">
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_gravity">bottom|left</item>
+        <item name="android:padding">@dimen/basePadding</item>
     </style>
 
     <style name="Text.Drawer">
@@ -316,6 +260,44 @@
         <item name="android:layout_marginRight">24dp</item>
     </style>
 
+    <style name="Text.Drawer.Inactive">
+        <item name="android:textColor">@color/ez_textDrawerInactive</item>
+        <item name="android:textSize">@dimen/textSizeMedium</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Rule">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/ez_separator_light</item>
+    </style>
+
+    <style name="Rule.Spaced">
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+    </style>
+
+    <style name="ViewBlock">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_margin">@dimen/marginLarge</item>
+    </style>
+
+    <style name="Card">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:foreground">@drawable/ez_ripple</item>
+    </style>
+
     <style name="Separator">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>
@@ -324,6 +306,34 @@
         <item name="android:layout_marginBottom">4dp</item>
         <item name="android:layout_marginRight">16dp</item>
         <item name="android:layout_marginLeft">16dp</item>
+    </style>
+
+    <style name="Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/marginMedium</item>
+        <item name="android:layout_marginBottom">@dimen/marginSmall</item>
+        <item name="android:layout_marginLeft">@dimen/marginSmall</item>
+        <item name="android:layout_marginRight">@dimen/marginSmall</item>
+        <item name="android:clickable">true</item>
+        <item name="android:textSize">@dimen/textSizeMedium</item>
+        <item name="android:foreground">@drawable/ez_ripple</item>
+        <item name="cardBackgroundColor">@color/background_floating_material_light</item>
+    </style>
+
+    <style name="TextButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/textSizeLarge</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:padding">@dimen/marginSmall</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="Button.Pressed">
+        <item name="cardBackgroundColor">?attr/colorPrimary</item>
     </style>
 
 </resources>

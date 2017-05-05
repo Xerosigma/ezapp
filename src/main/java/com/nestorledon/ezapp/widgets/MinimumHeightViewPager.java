@@ -10,17 +10,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * A ViewPager who's height remains the that of it's smallest child view.
+ *
  * Created by nestorledon on 4/20/15.
  */
-public class AdjustedViewPager extends ViewPager {
+public class MinimumHeightViewPager extends ViewPager {
 
     private List<Integer> mList = new ArrayList<>();
 
-    public AdjustedViewPager(Context context) {
+    public MinimumHeightViewPager(Context context) {
         super(context);
     }
 
-    public AdjustedViewPager(Context context, AttributeSet attrs) {
+    public MinimumHeightViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

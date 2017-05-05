@@ -5,6 +5,7 @@
     <dimen name="textSizeDefault">@dimen/textSizeSmall</dimen>
     <dimen name="textSizeSmall">12sp</dimen>
     <dimen name="textSizeMedium">14sp</dimen>
+    <dimen name="textSizeMedium2">16sp</dimen>
     <dimen name="textSizeLarge">18sp</dimen>
     <dimen name="textSizeHuge">24sp</dimen>
 
@@ -13,6 +14,8 @@
     <dimen name="marginMedium">16dp</dimen>
     <dimen name="marginLarge">24dp</dimen>
     <dimen name="marginHuge">32dp</dimen>
+
+    <dimen name="basePadding">10dp</dimen>
 
     <!-- App Specific -->
     <dimen name="status_bar_height">0dp</dimen>
